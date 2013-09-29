@@ -111,16 +111,9 @@ app.Logic.getChat = function( callback ){
     });
 }
 
-
-app.View.renderChat = function(location) {
-	template = _.template($('#chatroom').html());
-	$('#main_container').html(template({location : location.name}));
-}
-
-
-app.View.renderMessage = function(message) {
+app.View.renderMessage = function(text) {
 	template = _.template($('#chatroom-message').html());
-	$('#msg-list').append(template({message : "hello", username : "abc", timestamp : "02:11:00"}));
+	$('#msg-list').append(template({message : text.text, username : text.name, timestamp : "2:00"}));
 }
 
 
@@ -132,7 +125,12 @@ app.View.renderLocationPage = function(){
 
 app.View.renderChatPage = function( filter ){
 
-	$('#main_container').html('');
+	template = _.template($('#chatroom').html());
+	$('#main_container').html(template({location : app.Session.event.name}));
+
+	app.Session.filter = filter;
+	
+	app.Logic.getChat(app.View.renderMessage);
 	console.log('rendering chat page');
 }
 
