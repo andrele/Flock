@@ -1,29 +1,65 @@
+$blue: #2d7ddc
 
 
-// header
-// 	width: 100%
-// 	background: #2D7DDC	
-// 	margin-bottom: 50px
-// 	text-align: center
-// 	h1
-// 		line-height: 1
-// 		margin: 0
-// 		padding: 5px 0
-// 		color: white
+h1,h2,h3,h4,h5,h6,p,a, label, textarea
+	font-family: 'Source Sans Pro', sans-serif
 
 
-// .field-item 
-// 	margin-bottom: 20px
-// 	> div.col-xs-4
-// 		text-align: right
-// 	> div.col-xs-8
-// 		> textarea, > select
-// 			width: 80%
+label
+	font-weight: 300
+	font-size: 20px	
 
-// .btn-container
-// 	text-align: center
 
-// .content
-// 	margin-bottom: 30px	
+header
+	width: 100%
+	background: $blue
+	margin-bottom: 50px
+	text-align: center
+	h1
+		line-height: 1
+		margin: 0
+		padding: 5px 0
+		color: white
+.input-group-addon
+	width: 40px
 
-// 	
+.input-group 
+	> input
+		width: 80%
+
+.field-item 
+	margin-bottom: 20px
+	width: 100%
+	> div.col-xs-4
+		text-align: right
+	> div.col-xs-8
+		> textarea, > select
+			width: 80%
+
+.btn-container
+	text-align: center
+
+.btn-wide
+	padding-left: 2em
+	padding-right: 2em
+
+.btn.btn-blue
+	background: $blue + #222222
+	color: #fff	
+	&:hover
+		background: $blue + #111111
+.content
+	margin-bottom: 30px	
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"]
+	height: 34px
+	padding-left: 12px
+	color: #999
+
+
+.chosen-container-multi .chosen-choices
+	height: 34px
+	border: 1px solid #cccccc
+
+.chosen-container-multi .chosen-choices li.search-choice
+	margin-top: 6px

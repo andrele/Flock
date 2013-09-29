@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<title>Welcome to Flock</title>
 	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.css">
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="libs/chosen/chosen.css">
+
 	<link rel="stylesheet" href="stylesheets/screen.css">
 	<!-- <link rel="stylesheet" media="screen" href="css/styles.css" > -->
     <meta name="description" content="">
@@ -17,56 +21,82 @@
         </div>
 
         <script type='text/template' id='loginPage'>
-				<div align="center">
-					<form class="contact_form" action="#" method="post" name="contact_form">
-							<ul>
-									<li>
-											 <h2>Login Here</h2>
-										 </li>
+        		<header>
+			      <h1>
+			        Login Here
+			      </h1>
+			    </header>
 
-									<li>
-											<label for="name">Name:</label>
-											<input type="text"  placeholder="John Doe" required />
-									</li>
-									<li>
-											<label for="email">Email:</label>
-											<input type="email" name="email" placeholder="john_doe@example.com" required />
-											<span class="form_hint">Proper format "name@something.com"</span>
-									</li>
-									<li>
-											<label for="phone">Phone:</label>
-										<input type="tel" name="phone" placeholder="999-999-9999" />
-											<span class="form_hint">Proper format "9999999999"</span>
-									</li>
-									<li>
-											<label for="interests">Interests:</label>
-											<table >
-												<tr>
-													<td width="22"  ><input type="checkbox"  value="art" id="art_checkBox">
-														<td width="141"  ><label>Art</label></td>
-												</tr>
-												<tr>
-													<td><input type="checkbox"  value="technology" id="technology_checkBox"></td>
-														<td><label>Technology</label></td>
-												</tr>
-												<tr>
-													<td> <input type="checkbox" value="music" id="music_checkBox"></td>
-														<td><label>Music</label></td>
-												</tr>
-												<tr>
-													<td> <input type="checkbox" value="sports" id="sports_checkBox"></td>
-														<td><label>Sports</label></td>
-												</tr>
-											</table>
-		
-									</li>
-									<div align="center">
-									<li>
-										<button class="submit" type="button" id='enterLoginInfo'>Submit</button>
-									</li></div>
-							</ul>
-					</form>
+				<div class="container">
+					<div class="row content">
+						<div class="col-xs-12">
 
+
+
+
+						<form class="contact_form" action="#" method="post" name="contact_form">
+						
+							
+
+							<div class="input-group field-item" id="name">
+					           
+						            
+					        <span class="input-group-addon">
+						        <i class="icon-info icon-large"></i>
+						      </span>
+			
+					            <input type="text" class="form-control" placeholder="Name">
+					      
+					          </div>
+					          <div class="input-group field-item" id="email">
+						          <span class="input-group-addon">
+							        <i class="icon-envelope"></i>
+							      </span>
+					            
+					            <input type="email" class="form-control" placeholder="Email">
+
+					          </div>
+
+					          <div class="input-group field-item" id="phone">
+					          	<span class="input-group-addon">
+							        <i class="icon-mobile-phone"></i>
+							      </span>
+					            
+					            <input type="tel" class="form-control" placeholder="phone">
+					          </div>
+
+					          <div class="input-group field-item" id="phone">
+					          	<span class="input-group-addon">
+							        <i class="icon-star"></i>
+							      </span>
+					            
+					            <select multiple class="chzn form-control">
+					                <option value="art">Art</option>
+					                <option value="sports">Sports</option>
+					                <option value="music">Music</option>
+					                <option value="technology">Technology</option>
+					                <option value="food">Food</option>
+					            </select>
+					          </div>
+
+
+							
+
+							
+					        <div class="row">
+						        <div class="col-xs-12 btn-container">
+						            <button class="btn btn-blue btn-wide submit" type="button" id='enterLoginInfo'>Submit</button>
+								</div>  
+							</div>
+
+
+					
+				</form>
+
+						</div>
+
+					
+			</div>
         </div>
 
         </script>
@@ -86,6 +116,7 @@
 
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="js/jquery-2.0.3.min.js"></script>
+        <script src="libs/chosen/chosen.jquery.js"></script>
         <script src="js/underscore-min.js"></script>
         <script src="js/main.js"></script>
 </body>

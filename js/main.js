@@ -144,3 +144,9 @@ app.View.getLocation = function() {
 
 
 });
+
+/*
+insert following to init:
+$('.chzn').chosen()
+
+*/
