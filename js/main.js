@@ -1,3 +1,23 @@
+// Utility to add Title casing to Strings
+String.prototype.toTitleCase = function () {
+  var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
+
+  return this.replace(/([^\W_]+[^\s-]*) */g, function (match, p1, index, title) {
+    if (index > 0 && index + p1.length !== title.length &&
+      p1.search(smallWords) > -1 && title.charAt(index - 2) !== ":" && 
+      title.charAt(index - 1).search(/[^\s-]/) < 0) {
+      return match.toLowerCase();
+    }
+
+    if (p1.substr(1).search(/[A-Z]|\../) > -1) {
+      return match;
+    }
+
+    return match.charAt(0).toUpperCase() + match.substr(1);
+  });
+};
+
+
 var app = app || {
 	View : {},
 	Logic : {}, 
@@ -54,7 +74,7 @@ app.View.initialize = function(){
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
 		} );
-	
+	$('#cover').delay(1500).fadeOut(1000);
 	app.Session.filter = "default";
 };
 
@@ -221,10 +241,19 @@ app.View.renderChatMenu = function( filter ){
 app.View.renderChatPage = function( filter ){
 
 	app.Session.filter = filter;
+
+	var tempFilter = "Public";
+
+	if (filter !== "default") {
+		tempFilter = filter.toTitleCase();
+	}
+
 	template = _.template($('#chatroom').html());
-	$('#main_container').html(template({location : app.Session.event.name}));
+	$('#main_container').html(template({filter : tempFilter, location : app.Session.event.name}));
 	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+	
+	// Prevent form from sending when pressing enter. Send chat instead.
 	$(document).on("keypress", 'form', function (e) {
     var code = e.keyCode || e.which;
     if (code == 13) {
