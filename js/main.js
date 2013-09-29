@@ -114,7 +114,7 @@ app.View.renderChat = function(location) {
 
 app.View.renderMessage = function(message) {
 	template = _.template($('#chatroom-message').html());
-	template({message : "hello", username : "abc", timestamp : "02:11:00"}).appendTo($('#msg-list'));
+	$('#msg-list').append(template({message : "hello", username : "abc", timestamp : "02:11:00"}));
 }
 
 
