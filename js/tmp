@@ -4,7 +4,6 @@ var app = app || {
 	Session : {}
 };
 
-	app.Session.filter = "default";
 
 function locationClicked(element) {
 	console.log("Name: " + element.innerHTML);
@@ -16,6 +15,7 @@ function locationClicked(element) {
 	var time = "";
 	app.Logic.addUserToEvent(place, time);
 	app.View.renderChatPage('default');
+	
 	// add user to this event 
 }
 
@@ -31,23 +31,20 @@ app.Logic.addUserToPeople = function ( name, meta ){
 
 app.View.initialize = function(){
 
-	$(document).ready(function(){
-		$('.chzn').chosen();
-	});
-
 	template = _.template( $('#loginPage').html() );
 	$('#main_container').html(template( {name: 'fasdfa', day:'fsdfsd'} ));
 
 	$('#enterLoginInfo').on('click', function(){
-			var name = $('#name').val();
-			var email = $('#email').val();
-			var phone = $('#phone').val();
+			var name = $('textarea#name').val();
+			var email = $('textarea#email').val();
+			var phone = $('textarea#phone').val();
 			var meta = {
 				email : email, 
 				phone : phone, 
 				interests : ['tech', 'art', 'food']
 			};
 			app.Logic.addUserToPeople(name, meta);
+			console.log(meta);
 			app.View.renderLocationPage();
 		} );
 };
@@ -89,10 +86,10 @@ app.Logic.getAttendees = function ( event, filter, callback ){
 }
 
 app.Logic.addChat = function(text){
-	console.log("Add CHAT!");
-	app.Session.filter = "default";
+
+	app.Session.filter = "";
 	time = new Date();
-    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
 	chatRef.push({
         name: app.Session.name,
         time : time, 
@@ -103,19 +100,11 @@ app.Logic.addChat = function(text){
 app.Logic.getChat = function( callback ){
 
     // get refs to all attendees
-    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
-    var chatRefLimited = chatRef.limit(5);
-
-    chatRefLimited.on('child_added', function(snapshot) {
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
+    chatRef.on('child_added', function(snapshot) {
     	var chat = snapshot.val();
-
     	callback( chat );
     });
-}
-
-app.View.renderMessage = function(text) {
-	template = _.template($('#chatroom-message').html());
-	$('#msg-list').append(template({message : text.text, username : text.name, timestamp : "2:00"}));
 }
 
 
@@ -127,22 +116,8 @@ app.View.renderLocationPage = function(){
 
 app.View.renderChatPage = function( filter ){
 
-	template = _.template($('#chatroom').html());
-	$('#main_container').html(template({location : app.Session.event.name}));
-	
-	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
-	app.Session.filter = filter;
-	
-	app.Logic.getChat(app.View.renderMessage);
+	$('#main_container').html('');
 	console.log('rendering chat page');
-}
-
-app.View.sendChat = function() {
-	console.log("SEND CHAT!");
-	app.Logic.addChat($('#chatbox-input').val());
-	
-	$('#chatbox-input').val("");
-	
 }
 
 app.View.renderAttendeesPage = function( filter ){
@@ -154,7 +129,6 @@ app.View.renderAttendeesPage = function( filter ){
 
 		console.log(attendee);
 		var t = _.template($('#attendeeTemplate').html());
-
 		$('#attendeeList').append( t(attendee) );
 
 	});
@@ -208,12 +182,4 @@ app.View.getLocation = function() {
 
 
 
-window.onload = app.View.initialize();
-
 });
-
-/*
-insert following to init:
-$('.chzn').chosen()
-
-*/
