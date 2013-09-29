@@ -37,16 +37,19 @@ app.View.initialize = function(){
 	});
 
 	template = _.template( $('#loginPage').html() );
-	$('#main_container').html(template( {name: 'fasdfa', day:'fsdfsd'} ));
+	$('#main_container').html(template( {name: '', day:''} ));
 
 	$('#enterLoginInfo').on('click', function(){
 			var name = $('#name').val();
 			var email = $('#email').val();
 			var phone = $('#phone').val();
+
+		    console.log("Selected interests: " + $('#input-interests').val());
+
 			var meta = {
 				email : email, 
 				phone : phone, 
-				interests : ['tech', 'art', 'food']
+				interests : ($('#input-interests').val() || [])
 			};
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
@@ -152,39 +155,66 @@ app.View.renderChatMenu = function( filter ){
 		numberOfTechnologyAttendees : numTechAttendees,
 		numberOfFoodAttendees : numFoodAttendees
 	}) );
+
+	// Set all buttons to disabled. We will add logic to enable each button if they have more than 1 person, or they have selected an interest
+	$('#artChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#sportsChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#musicChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#technologyChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#foodChat').attr("disabled", "diabled").addClass("btn-disabled");
 	
 	//app.View.renderChatPage('default');
 	$('#defaultChat').on("click", function() {app.View.renderChatPage('default')});
-	$('#artChat').on("click", function() {app.View.renderChatPage('art')});
 	$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')});
 	$('#musicChat').on("click", function() {app.View.renderChatPage('music')});
 	$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')});
 	$('#foodChat').on("click", function() {app.View.renderChatPage('food')});
 	// TODO - ADD logic to fetch the number of attendees for each interests.
 
+	console.log(app.Session.meta.interests.length);
+	for (var i = 0; i < app.Session.meta.interests.length; i++) {
+		console.log(app.Session.meta.interests[i]);
+
+		if (app.Session.meta.interests[i] === "art") {
+			$('#artChat').on("click", function() {app.View.renderChatPage('art')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "sports") {
+			$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "music") {
+			$('#musicChat').on("click", function() {app.View.renderChatPage('music')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "technology") {
+			$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "food") {
+			$('#foodChat').on("click", function() {app.View.renderChatPage('food')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+	}
+
+	// If there are more than 0 people, then allow viewing user list
 	if (numArtAttendees <= 0) {
-		$('#artAttendees').attr("disabled", "disabled");
-		$('#artAttendees').addClass("btn-disabled");
+		$('#artAttendees').attr("disabled", "disabled").addClass("btn-disabled");
 	}
 	
 	if (numSportsAttendees <= 0) {
-		$('#sportsAttendees').attr("disabled", "disabled");
-		$('#sportsAttendees').addClass("btn-disabled");
+		$('#sportsAttendees').attr("disabled", "disabled").addClass("btn-disabled");
 	}
 
 	if (numMusicAttendees <= 0) {
-		$('#musicAttendees').attr("disabled", "disabled");
-		$('#musicAttendees').addClass("btn-disabled");
+		$('#musicAttendees').attr("disabled", "disabled").addClass("btn-disabled");
 	}
 
 	if (numTechAttendees <= 0) {
-		$('#technologyAttendees').attr("disabled", "disabled");
-		$('#technologyAttendees').addClass("btn-disabled");
+		$('#technologyAttendees').attr("disabled", "disabled").addClass("btn-disabled");
 	}
 
 	if (numFoodAttendees <= 0) {
-		$('#foodAttendees').attr("disabled", "disabled");
-		$('#foodAttendees').addClass("btn-disabled");
+		$('#foodAttendees').attr("disabled", "disabled").addClass("btn-disabled");
 	}	
 }
 
