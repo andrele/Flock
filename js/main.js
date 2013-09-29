@@ -201,46 +201,46 @@ app.View.renderChatMenu = function( filter ){
 		console.log(app.Session.meta.interests[i]);
 
 		if (app.Session.meta.interests[i] === "art") {
-			$('#artChat').on("click", function() {app.View.renderChatPage('art')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+			$('#artChat').on("click", function() {app.View.renderChatPage('art')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
 
 		if (app.Session.meta.interests[i] === "sports") {
-			$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+			$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
 
 		if (app.Session.meta.interests[i] === "music") {
-			$('#musicChat').on("click", function() {app.View.renderChatPage('music')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+			$('#musicChat').on("click", function() {app.View.renderChatPage('music')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
 
 		if (app.Session.meta.interests[i] === "technology") {
-			$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+			$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
 
 		if (app.Session.meta.interests[i] === "food") {
-			$('#foodChat').on("click", function() {app.View.renderChatPage('food')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+			$('#foodChat').on("click", function() {app.View.renderChatPage('food')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
 	}
 
 
 
 	// If there are more than 0 people, then allow viewing user list
-	if (numArtAttendees > 0) {
+	if (numArtAttendees > 0 && $('#artChat').is(':disabled') == false) {
 		$('#artAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("art");});
 	}
 	
-	if (numSportsAttendees > 0) {
+	if (numSportsAttendees > 0 && $('#sportsChat').is(':disabled') == false) {
 		$('#sportsAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("sports");})
 	}
 
-	if (numMusicAttendees > 0) {
+	if (numMusicAttendees > 0 && $('#musicChat').is(':disabled') == false) {
 		$('#musicAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("music");})
 	}
 
-	if (numTechAttendees > 0) {
+	if (numTechAttendees > 0 && $('#technologyChat').is(':disabled') == false) {
 		$('#technologyAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("technology");})
 	}
 
-	if (numFoodAttendees > 0) {
+	if (numFoodAttendees > 0 && $('#foodChat').is(':disabled') == false) {
 		$('#foodAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("food");})
 	}	
 }
