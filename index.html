@@ -85,18 +85,14 @@
         	<header id="nav-bar">
         		<a href="#">Groups</a>
         		<h1>Public</h1>
-  					<h3><%- location -%></h3>
+  					<h3><%- location %></h3>
         		<a href="#">Friends</a>
         	</header>
         	
         	<div id="messages">
 						<ul id="msg-list">
 							<!-- For each msg /// remove later -->
-							<li>
-								<p class="msg-message">Message</p>
-								<span class="msg-username">Username</span>
-								<span class="msg-timestamp">Timestamp</span>
-							</li>
+							
 						</ul>
 					</div>
 					
@@ -108,6 +104,15 @@
 						</form>
 					</div>
 					
+        </script>
+        
+        <!-- Template for the individual messages in the chatroom -->
+        <script type="text/template" id="chatroom-message">
+        	<li>
+						<p class="msg-message">Message</p>
+						<span class="msg-username"><%- username %></span>
+						<span class="msg-timestamp"><%- timestamp %></span>
+					</li>
         </script>
 
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
