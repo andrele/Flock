@@ -8,6 +8,13 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="libs/chosen/chosen.css">
 
+  <Link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' />
+  <![endif]-->
+  <Script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></Script>
+
+
 	<link rel="stylesheet" href="stylesheets/screen.css">
 	<!-- <link rel="stylesheet" media="screen" href="css/styles.css" > -->
     <meta name="description" content="">
@@ -24,7 +31,7 @@
 
         		<header>
 			      <h1>
-			        Login Here
+			        Login Page
 			      </h1>
 			    </header>
 
@@ -46,7 +53,7 @@
 						        <i class="icon-info icon-large"></i>
 						      </span>
 			
-					            <input type="text" class="form-control" id="name" placeholder="Name">
+					            <input type="text" class="form-control" id="name" placeholder="NAME">
 					      
 					          </div>
 					          <div class="input-group field-item" id="email2">
@@ -54,16 +61,16 @@
 							        <i class="icon-envelope"></i>
 							      </span>
 					            
-					            <input type="email" class="form-control" id='email' placeholder="Email">
+					            <input type="email" class="form-control" id='email' placeholder="EMAIL">
 
 					          </div>
 
 					          <div class="input-group field-item" id="phone2">
 					          	<span class="input-group-addon">
-							        <i class="icon-mobile-phone"></i>
+							        <i class="icon-mobile-phone icon-large"></i>
 							      </span>
 					            
-					            <input type="tel" class="form-control" id='phone' placeholder="phone">
+					            <input type="tel" class="form-control" id='phone' placeholder="PHONE">
 					          </div>
 
 					          <div class="input-group field-item" id="phone2">
@@ -132,7 +139,12 @@
         
         <!-- Template for enumerating locations -->
         <script type="text/template" id="locationPage">
-      
+      		<header class="no-padding-bottom">
+			      <h1>
+			        Login Page
+			      </h1>
+			    </header>
+            <div id='map'></div>
         	<ul id="locations">
 
         	</ul>
@@ -145,10 +157,10 @@
         <script type="text/template" id="chatroom">
         	<!-- Header / Navbar -->
         	<header id="nav-bar">
-        		<a href="#">Groups</a>
+        		<a class="left nav-icon" href="#"> &lt; Groups</a>
         		<h1>Public</h1>
   					<h3><%- location %></h3>
-        		<a href="#">Friends</a>
+        		<a class="right nav-icon" href="#">Friends &gt;</a>
         	</header>
         	
         	<div class="container">
@@ -162,11 +174,20 @@
 
 					
 					<!-- Chatbox -->
+					<div class="container">
 					<div id="chatbox">
 						<form id="chatbox-form">
-							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
-							<input type="submit" value="+" name="chatbox-submit" id="chatbox-submit" />
-						</form>
+						<div class="input-group">
+					      <input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
+					      <span class="input-group-btn">
+					        <button type="button" name="chatbox-submit" class="btn btn-default" id="chatbox-submit">+</button>
+					      </span>
+					    </div><!-- /input-group -->
+					   	</form>
+					</div>
+
+						
+					
 					</div>
 					
         </script>

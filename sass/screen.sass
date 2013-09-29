@@ -1,11 +1,64 @@
-$blue: #2d7ddc
+$blue: #16a085
+
+@font-face 
+	font-family: Lato
+	src: url("fonts/Lato-Lig.otf") format("opentype")
+
 
 
 
 
 h1,h2,h3,h4,h5,h6,p,a, label, textarea
-	font-family: 'Source Sans Pro', sans-serif
+	font-family: Lato, sans-serif
 
+ul, li
+	list-style-type: none !important
+
+body
+	text-align:center
+
+.nav-icon
+	color: white
+	position: absolute
+	font-size: 16px
+	top: 20px
+	
+.left
+	float: left
+	left: 10px
+
+
+.right
+	float: right
+	right: 10px
+
+
+#map
+	width: 100% 
+	height: 200px 
+
+#locations
+	position: relative
+	padding-top: 0px
+	padding-left: 0px
+	> li
+		width: 100%
+		padding: 1em 0em 1em 3em
+		color: rgb(40,45,50)
+		cursor: pointer
+		&:hover
+			background-color: $blue
+			color: white
+
+
+		&:nth-child(even)
+			background: #f3f3f3
+			&:hover
+				background-color: $blue
+				color: white
+
+body
+	font-family: Lato, sans-serif
 
 label
 	font-weight: 300
@@ -17,11 +70,20 @@ header
 	background: $blue
 	margin-bottom: 50px
 	text-align: center
+	padding: 10px
 	h1
 		line-height: 1
 		margin: 0
-		padding: 5px 0
+		padding: 0
 		color: white
+		font-size: 26px
+	h3
+		margin: 0x
+		font-size: 14px
+		color: #fff
+
+header.no-padding-bottom
+	margin-bottom: 0		
 .input-group-addon
 	width: 40px
 
@@ -64,7 +126,7 @@ ul
 		padding: 10px
 		border: 1px #ccc solid
 		margin-bottom: 15px
-
+		border-radius: 5px
 
 
 
@@ -95,3 +157,10 @@ ul
 
 .chosen-container-multi .chosen-choices li.search-choice
 	margin-top: 6px
+
+#chatbox-input
+	width: 100%	
+	border: 1px solid #cccccc
+	height: 34px
+	// background: $blue
+	color: #333
