@@ -195,6 +195,14 @@ app.View.renderChatPage = function( filter ){
 	$('#main_container').html(template({location : app.Session.event.name}));
 	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+	$(document).on("keypress", 'form', function (e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        e.preventDefault();
+        app.View.sendChat()
+        return false;
+    }
+});
 	
 	app.Logic.getChat(app.View.renderMessage);
 	console.log('rendering chat page');
