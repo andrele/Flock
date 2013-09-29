@@ -34,9 +34,9 @@ app.View.initialize = function(){
 	$('#main_container').html(template( {name: 'fasdfa', day:'fsdfsd'} ));
 
 	$('#enterLoginInfo').on('click', function(){
-			var name = $('textarea#name').val();
-			var email = $('textarea#email').val();
-			var phone = $('textarea#phone').val();
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var phone = $('#phone').val();
 			var meta = {
 				email : email, 
 				phone : phone, 
@@ -101,6 +101,7 @@ app.Logic.getChat = function( callback ){
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
     chatRef.on('child_added', function(snapshot) {
     	var chat = snapshot.val();
+
     	callback( chat );
     });
 }
