@@ -76,13 +76,39 @@
       
         	<ul id="locations">
         		<!-- Iterate on the locations -->
-        		
-        		
-        		
         	</ul>
         </script>
         
-        
+        <!-- Template for chatroom -->
+        <script type="text/template" id="chatroom">
+        	<!-- Header / Navbar -->
+        	<header id="nav-bar">
+        		<a href="#">Groups</a>
+        		<h1>Public</h1>
+  					<h3><%- location -%></h3>
+        		<a href="#">Friends</a>
+        	</header>
+        	
+        	<div id="messages">
+						<ul id="msg-list">
+							<!-- For each msg /// remove later -->
+							<li>
+								<p class="msg-message">Message</p>
+								<span class="msg-username">Username</span>
+								<span class="msg-timestamp">Timestamp</span>
+							</li>
+						</ul>
+					</div>
+					
+					<!-- Chatbox -->
+					<div id="chatbox">
+						<form id="chatbox-form">
+							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
+							<input type="submit" value="+" name="chatbox-submit" id="chatbox-submit" />
+						</form>
+					</div>
+					
+        </script>
 
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="js/jquery-2.0.3.min.js"></script>
