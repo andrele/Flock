@@ -5,12 +5,18 @@ var app = app || {
 };
 
 
-		function locationClicked(element) {
-			console.log("Name: " + element.innerHTML);
-			console.log("Id: " + element.getAttribute("data-id"));
-			
-			// add user to this event 
-		}
+function locationClicked(element) {
+	console.log("Name: " + element.innerHTML);
+	console.log("Id: " + element.getAttribute("data-id"));
+	var place = {
+		name : element.innerHTML,
+		id :  element.getAttribute("data-id")
+	};
+	var time = "";
+	app.Logic.addUserToEvent(place, time);
+	
+	// add user to this event 
+}
 
 
 $(function(){
@@ -37,7 +43,6 @@ app.View.initialize = function(){
 				interests : ['tech', 'art', 'food']
 			};
 			app.Logic.addUserToPeople(name, meta);
-			console.log(meta);
 			app.View.renderLocationPage();
 		} );
 };
@@ -46,10 +51,10 @@ app.View.initialize = function(){
 app.Logic.addUserToEvent = function (event, time){
 
 	app.Session.event = event;
-    var eventRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/");
+    var eventRef = new Firebase("https://hackny.firebaseio.com/events/" + event.id + "/");
 
-    for (var i=0;i<meta.interests.length;i++){
-       var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/" + meta.interests[i] + "/" + "people" + "/");
+    for (var i=0;i<app.Session.meta.interests.length;i++){
+       var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event.id + "/" + app.Session.meta.interests[i] + "/" + "people" + "/");
        attendeesRef.push({
         name: app.Session.name,
         time : time, 
