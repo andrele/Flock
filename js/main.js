@@ -287,6 +287,7 @@ app.View.renderAttendeesPage = function( filter ){
 	var template = _.template($('#attendeesListTemplate').html());
 	$('#main_container').html('');
 	$('#main_container').html( template() );
+	$('#back-attendee-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	app.Logic.getAttendees(app.Session.event.id, filter, function( attendee ){
 
 		console.log(attendee);
