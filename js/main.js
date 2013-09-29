@@ -120,9 +120,12 @@ app.View.renderMessage = function(text) {
 
 
 app.View.renderLocationPage = function(){
-			//console.log(meta);
+	
+
 			app.View.drawLocation();
 			app.View.getLocation();
+	  // var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
+   //    .setView([37.9, -77], 5);
 };
 
 app.View.renderChatPage = function( filter ){
@@ -155,6 +158,9 @@ app.View.renderAttendeesPage = function( filter ){
 app.View.drawLocation = function() {
 	template = _.template($('#locationPage').html());
 	$('#main_container').html(template());
+
+	console.log('HERE ');
+	console.log( $('#main_container') );
 	
 }
 
@@ -165,7 +171,6 @@ app.View.getLocation = function() {
 
 	function getLocation()
 	{
-		console.log('test');
 	if (navigator.geolocation)
 		{
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -174,6 +179,8 @@ app.View.getLocation = function() {
 	}
 	function showPosition(position)
 	{
+		  var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
+      .setView([position.coords.latitude, position.coords.longitude], 15);
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "https://api.foursquare.com/v2/venues/search?ll=" + position.coords.latitude + "," + position.coords.longitude + "&oauth_token=2ZBTC4SWH5UO1UTOPCXOARGZ5RXLFM3NFRVE1UNFDMNGLGPN&v=20130928", false);
 		xhr.send();
