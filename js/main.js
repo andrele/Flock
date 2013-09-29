@@ -38,9 +38,9 @@ app.View.initialize = function(){
 			};
 			app.Logic.addUserToPeople(name, meta);
 			console.log(meta);
+			app.View.renderLocationPage();
 		} );
-	};
-});
+};
 
 // opens default chat session
 app.Logic.addUserToEvent = function (event, time){
@@ -84,10 +84,13 @@ app.Logic.addChat = function(event, filter, time, text){
 app.Logic.getChat = function(){
 
 }
+
+
+app.View.renderLocationPage = function(){
 			//console.log(meta);
 			app.View.drawLocation();
 			app.View.getLocation();
-	} );
+
 
 };
 
@@ -99,39 +102,40 @@ app.View.drawLocation = function() {
 
 app.View.getLocation = function() {
 	//var x=document.getElementById("demo");
+	console.log("in get loc");
 	var foursquareData;
 
 	function getLocation()
+	{
+		console.log('test');
+	if (navigator.geolocation)
 		{
-		if (navigator.geolocation)
-			{
-			navigator.geolocation.getCurrentPosition(showPosition);
-			}
-		//else{ x.innerHTML="Geolocation is not supported by this browser."; }
+		navigator.geolocation.getCurrentPosition(showPosition);
 		}
+	//else{ x.innerHTML="Geolocation is not supported by this browser."; }
+	}
 	function showPosition(position)
-		{
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "https://api.foursquare.com/v2/venues/search?ll=" + position.coords.latitude + "," + position.coords.longitude + "&oauth_token=2ZBTC4SWH5UO1UTOPCXOARGZ5RXLFM3NFRVE1UNFDMNGLGPN&v=20130928", false);
-			xhr.send();
-			foursquareData = JSON.parse(xhr.responseText);
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "https://api.foursquare.com/v2/venues/search?ll=" + position.coords.latitude + "," + position.coords.longitude + "&oauth_token=2ZBTC4SWH5UO1UTOPCXOARGZ5RXLFM3NFRVE1UNFDMNGLGPN&v=20130928", false);
+		xhr.send();
+		foursquareData = JSON.parse(xhr.responseText);
 
-		//x.innerHTML= "Status: " + xhr.status + "<br/>" + "StatusText: " + xhr.responseText;
-		
-			var ul = document.getElementById("locations");
-			console.log("Locations");
-			console.log(ul);
-			for (var i = 0;i<foursquareData.response.venues.length;i++) {
-				var listItem = document.createElement("li");
-				listItem.setAttribute("data-id", foursquareData.response.venues[i].id );
-				listItem.setAttribute("onclick", "locationClicked(this)");
-				listItem.appendChild(document.createTextNode(foursquareData.response.venues[i].name));
-				ul.appendChild(listItem); 
-			}
-			//x.appendChild(ul);
+	//x.innerHTML= "Status: " + xhr.status + "<br/>" + "StatusText: " + xhr.responseText;
+	
+		var ul = document.getElementById("locations");
+		console.log("Locations");
+		console.log(ul);
+		for (var i = 0;i<foursquareData.response.venues.length;i++) {
+			var listItem = document.createElement("li");
+			listItem.setAttribute("data-id", foursquareData.response.venues[i].id );
+			listItem.setAttribute("onclick", "locationClicked(this)");
+			listItem.appendChild(document.createTextNode(foursquareData.response.venues[i].name));
+			ul.appendChild(listItem); 
 		}
-		
-		getLocation();
+		//x.appendChild(ul);
+	}	
+	getLocation();
 
 }
 
