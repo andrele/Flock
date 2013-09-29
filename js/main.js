@@ -85,6 +85,16 @@ app.Logic.getChat = function(){
 
 }
 
+app.View.renderChat = function(location) {
+	template = _.template($('#chatroom').html());
+	$('#main_container').html(template({location : location.name}));
+}
+
+app.View.renderMessage = function(message) {
+	template = _.template($('#chatroom-message').html());
+	template({message : "hello", username : "abc", timestamp : "02:11:00"}).appendTo($('#msg-list'));
+}
+
 
 app.View.renderLocationPage = function(){
 			//console.log(meta);
@@ -141,6 +151,6 @@ app.View.getLocation = function() {
 
 
 
-
+window.onload = app.View.initialize();
 
 });
