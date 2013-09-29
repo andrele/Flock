@@ -148,7 +148,7 @@ app.Logic.getChat = function( callback ){
 app.View.renderMessage = function(text) {
 	template = _.template($('#chatroom-message').html());
 	var time = new Date();
-	var timeStamp = (time.getMonth() + 1) + "/" + time.getDate() + "/" + time.getFullYear() + " " + time.getHours() + ":" + time.getMinutes();
+	var timeStamp = (time.getMonth() + 1) + "/" + time.getDate() + "/" + time.getFullYear() + " " + time.getHours() + ":" + (time.getMinutes()<10?'0':'') + time.getMinutes();
 	$('#msg-list').append(template({message : text.text, username : text.name, timestamp : timeStamp}));
 }
 
