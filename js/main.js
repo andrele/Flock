@@ -104,7 +104,9 @@ app.Logic.getChat = function( callback ){
 
     // get refs to all attendees
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
-    chatRef.on('child_added', function(snapshot) {
+    var chatRefLimited = chatRef.limit(5);
+
+    chatRefLimited.on('child_added', function(snapshot) {
     	var chat = snapshot.val();
 
     	callback( chat );
