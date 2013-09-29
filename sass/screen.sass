@@ -41,6 +41,8 @@ body
 	position: relative
 	padding-top: 0px
 	padding-left: 0px
+	height: 270px
+	overflow-y: scroll
 	> li
 		width: 100%
 		padding: 1em 0em 1em 3em
@@ -68,7 +70,7 @@ label
 header
 	width: 100%
 	background: $blue
-	margin-bottom: 50px
+	margin-bottom: 6em
 	text-align: center
 	padding: 10px
 	h1
@@ -77,9 +79,16 @@ header
 		padding: 0
 		color: white
 		font-size: 26px
+	
+header.no-bottom-margin
+	margin-bottom: 0
+
+header.subheader
+	background: $blue - #555555
+	margin-bottom: 50px
 	h3
-		margin: 0x
-		font-size: 14px
+		margin: 0
+		font-size: 12px
 		color: #fff
 
 header.no-padding-bottom
@@ -124,9 +133,17 @@ ul
 		list-style: none
 		background: #f3f3f3
 		padding: 10px
-		border: 1px #ccc solid
-		margin-bottom: 15px
+		border: 1px #f0f0f0 solid
+		margin-bottom: 25px
 		border-radius: 5px
+		position: relative
+		i.icon-user
+			position: absolute
+			right: 10px
+			bottom: -20px
+			color: $blue - #555555
+
+
 
 
 
@@ -134,8 +151,10 @@ ul
 	text-align: center
 
 .btn-wide
-	padding-left: 2em
-	padding-right: 2em
+	font-size: 18px
+	width: 80%
+	height: 2em
+	margin-top: 3em
 
 .btn.btn-blue
 	background: $blue + #222222
@@ -164,3 +183,45 @@ ul
 	height: 34px
 	// background: $blue
 	color: #333
+
+
+.chat-menu-header
+	> div
+		text-align: center
+		> h1
+			> span.big
+				font-size: 60px
+				display: block
+
+
+
+.chat-menu-table
+	height: 300px
+	overflow-y: scroll
+	// display: block
+	// width: 100%
+	i
+		color: $blue + #222222
+
+	tr
+		td
+			// background: red
+			width: 70%
+			text-align: left
+			padding-left: 20px
+			border-bottom: 2px #777 solid		
+			a
+				font-size: 20px	
+				color: #333
+				line-height: 3em
+				&:hover
+					text-decoration: none		
+		td:nth-child(even)
+			// background: red
+			width: 30%
+			text-align: left
+			padding-left: 20px
+			border-bottom: 2px #777 solid		
+
+table
+	width: 100%

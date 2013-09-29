@@ -149,6 +149,79 @@
 
         	</ul>
         </script>
+        
+        <!-- Template for Chat Menu -->
+        <script type="text/template" id="chatMenuTemplate">
+
+        <header class="no-padding-bottom">
+			      <h1>
+			        Chat Menu
+			      </h1>
+			    </header>
+
+		
+        <div>
+
+        
+
+
+        
+
+        <table class='chat-menu-table'>
+	        <tr>
+	        	<td>
+					<a type="button" id='defaultChat'>Default Chat</a> 
+				</td>
+				<td>
+			        <a type="button" id='defaultChatAttendees'><i class="icon-group"></i> 26</a>
+		        </td>
+			</tr>
+			<tr>
+				<td>
+			        <a type="button" id='artChat' >Art Chat</a> 
+		        </td>
+		        <td>
+			        <a type="button" id='artAttendees'><i class="icon-group"></i> <%-numberOfArtAttendees %></a>
+		        </td>
+	        </tr>
+
+			<tr>
+				<td>
+			        <a type="button" id='sportsChat'>Sports Chat</a>
+		        </td>
+		        <td>
+			        <a  type="button" id='sportsAttendees'><i class="icon-group"></i> <%-numberOfSportsAttendees%></a>
+		        </td>
+	        </tr>
+    
+		    <tr>
+				<td>
+					<a type="button" id='musicChat'>Music Chat</a>
+				</td>
+		        <td>
+			        <a type="button" id='musicAttendees'><i class="icon-group"></i> <%-numberOfMusicAttendees%> </a>
+		        </td>
+	        </tr>
+    
+		    <tr>
+				<td>
+			        <a type="button" id='technologyChat'>Technology Chat</a>
+		        </td>
+		        <td>
+			        <a type="button" id='technologyAttendees'><i class="icon-group"></i> <%-numberOfTechnologyAttendees%></a>
+		        </td>
+	        </tr>
+    
+		    <tr>
+				<td>
+			        <a type="button" id='foodChat'>Food Chat</a>
+		        </td>
+		        <td>
+			        <a type="button" id='foodAttendees'><i class="icon-group"></i> <%-numberOfFoodAttendees%> </a>
+		        </td>
+	        </tr>
+        </div>
+        </script>
 
         <script id='text/template' id='chatPage'>
         </script>
@@ -156,11 +229,14 @@
         <!-- Template for chatroom -->
         <script type="text/template" id="chatroom">
         	<!-- Header / Navbar -->
-        	<header id="nav-bar">
+        	<header class="no-bottom-margin" id="nav-bar">
         		<a class="left nav-icon" href="#"> &lt; Groups</a>
         		<h1>Public</h1>
-  					<h3><%- location %></h3>
+  					
         		<a class="right nav-icon" href="#">Friends &gt;</a>
+        	</header>
+        	<header class="subheader">
+        		<h3><%- location %></h3>
         	</header>
         	
         	<div class="container">
@@ -198,6 +274,7 @@
 						<p class="msg-message"><%- message %></p>
 						<span class="msg-username"><%- username %></span>
 						<span class="msg-timestamp"><%- timestamp %></span>
+						<i class="icon-user icon-4x"></i>
 					</li>
         </script>
 
