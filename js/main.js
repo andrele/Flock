@@ -74,6 +74,7 @@ app.View.initialize = function(){
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
 		} );
+
 	$('#cover').delay(1500).fadeOut(1000);
 	app.Session.filter = "default";
 };
@@ -158,6 +159,7 @@ app.View.renderLocationPage = function(){
 
 app.View.renderChatMenu = function( filter ){
 
+	var numPublicAttendees = 500;
 	var numArtAttendees = 123;
 	var numSportsAttendees = 5;
 	var numMusicAttendees = 0;
@@ -166,6 +168,8 @@ app.View.renderChatMenu = function( filter ){
 
 	var template = _.template($('#chatMenuTemplate').html());
 	$('#main_container').html( template({
+
+		numberOfPublicAttendees : numPublicAttendees,
 		numberOfArtAttendees : numArtAttendees,
 		numberOfSportsAttendees : numSportsAttendees,
 		numberOfMusicAttendees : numMusicAttendees,
@@ -179,13 +183,16 @@ app.View.renderChatMenu = function( filter ){
 	$('#musicChat').attr("disabled", "diabled").addClass("btn-disabled");
 	$('#technologyChat').attr("disabled", "diabled").addClass("btn-disabled");
 	$('#foodChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#artAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#sportsAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#musicAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#technologyAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#foodAttendees').attr("disabled", "diabled").addClass("btn-disabled");
 	
 	//app.View.renderChatPage('default');
-	$('#defaultChat').on("click", function() {app.View.renderChatPage('default')});
-	$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')});
-	$('#musicChat').on("click", function() {app.View.renderChatPage('music')});
-	$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')});
-	$('#foodChat').on("click", function() {app.View.renderChatPage('food')});
+	$('#defaultChat').on("click", function() {app.View.renderChatPage('default');});
+	$('#publicAttendees').on("click", function() {app.View.renderAttendeesPage("default");});
+
 	// TODO - ADD logic to fetch the number of attendees for each interests.
 
 	console.log(app.Session.meta.interests.length);
@@ -213,25 +220,27 @@ app.View.renderChatMenu = function( filter ){
 		}
 	}
 
+
+
 	// If there are more than 0 people, then allow viewing user list
-	if (numArtAttendees <= 0) {
-		$('#artAttendees').attr("disabled", "disabled").addClass("btn-disabled");
+	if (numArtAttendees > 0) {
+		$('#artAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("art");});
 	}
 	
-	if (numSportsAttendees <= 0) {
-		$('#sportsAttendees').attr("disabled", "disabled").addClass("btn-disabled");
+	if (numSportsAttendees > 0) {
+		$('#sportsAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("sports");})
 	}
 
-	if (numMusicAttendees <= 0) {
-		$('#musicAttendees').attr("disabled", "disabled").addClass("btn-disabled");
+	if (numMusicAttendees > 0) {
+		$('#musicAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("music");})
 	}
 
-	if (numTechAttendees <= 0) {
-		$('#technologyAttendees').attr("disabled", "disabled").addClass("btn-disabled");
+	if (numTechAttendees > 0) {
+		$('#technologyAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("technology");})
 	}
 
-	if (numFoodAttendees <= 0) {
-		$('#foodAttendees').attr("disabled", "disabled").addClass("btn-disabled");
+	if (numFoodAttendees > 0) {
+		$('#foodAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("food");})
 	}	
 }
 
@@ -249,6 +258,7 @@ app.View.renderChatPage = function( filter ){
 	$('#main_container').html(template({filter : tempFilter, location : app.Session.event.name}));
 	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+
 	
 	// Prevent form from sending when pressing enter. Send chat instead.
 	$(document).on("keypress", 'form', function (e) {
