@@ -29,6 +29,10 @@
 
         <script type='text/template' id='loginPage'>
 
+        		<div id='cover'>
+        			<img src='images/splash_2.png'>
+        		</div>
+
         		<header>
 			      <h1>
 			        Login Page
@@ -78,7 +82,7 @@
 							        <i class="icon-star"></i>
 							      </span>
 					            
-					            <select multiple class="chzn form-control">
+					            <select multiple class="chzn form-control" id="input-interests">
 					                <option value="art">Art</option>
 					                <option value="sports">Sports</option>
 					                <option value="music">Music</option>
@@ -153,6 +157,7 @@
         <!-- Template for Chat Menu -->
         <script type="text/template" id="chatMenuTemplate">
 
+
         <header class="no-padding-bottom">
 			      <h1>
 			        Chat Menu
@@ -220,6 +225,7 @@
 			        <a type="button" id='foodAttendees'><i class="icon-group"></i> <%-numberOfFoodAttendees%> </a>
 		        </td>
 	        </tr>
+
         </div>
         </script>
 
@@ -229,14 +235,14 @@
         <!-- Template for chatroom -->
         <script type="text/template" id="chatroom">
         	<!-- Header / Navbar -->
+
+        
         	<header class="no-bottom-margin" id="nav-bar">
-        		<a class="left nav-icon" href="#"> &lt; Groups</a>
-        		<h1>Public</h1>
-  					
-        		<a class="right nav-icon" href="#">Friends &gt;</a>
-        	</header>
-        	<header class="subheader">
-        		<h3><%- location %></h3>
+        		<div id="back-chatmenu">Chat Menu</div>
+        		<h1><%- filter %></h1>
+  					<h3><%- location %></h3>
+        		<!--<a href="#">Friends</a>-->
+
         	</header>
         	
         	<div class="container">

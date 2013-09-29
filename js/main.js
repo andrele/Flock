@@ -1,3 +1,23 @@
+// Utility to add Title casing to Strings
+String.prototype.toTitleCase = function () {
+  var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
+
+  return this.replace(/([^\W_]+[^\s-]*) */g, function (match, p1, index, title) {
+    if (index > 0 && index + p1.length !== title.length &&
+      p1.search(smallWords) > -1 && title.charAt(index - 2) !== ":" && 
+      title.charAt(index - 1).search(/[^\s-]/) < 0) {
+      return match.toLowerCase();
+    }
+
+    if (p1.substr(1).search(/[A-Z]|\../) > -1) {
+      return match;
+    }
+
+    return match.charAt(0).toUpperCase() + match.substr(1);
+  });
+};
+
+
 var app = app || {
 	View : {},
 	Logic : {}, 
@@ -37,21 +57,25 @@ app.View.initialize = function(){
 	});
 
 	template = _.template( $('#loginPage').html() );
-	$('#main_container').html(template( {name: 'fasdfa', day:'fsdfsd'} ));
+	$('#main_container').html(template( {name: '', day:''} ));
 
 	$('#enterLoginInfo').on('click', function(){
 			var name = $('#name').val();
 			var email = $('#email').val();
 			var phone = $('#phone').val();
+
+		    console.log("Selected interests: " + $('#input-interests').val());
+
 			var meta = {
 				email : email, 
 				phone : phone, 
-				interests : ['tech', 'art', 'food']
+				interests : ($('#input-interests').val() || [])
 			};
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
 		} );
-	
+
+	$('#cover').delay(1500).fadeOut(1000);
 	app.Session.filter = "default";
 };
 
@@ -138,6 +162,7 @@ app.View.renderLocationPage = function(){
 
 app.View.renderChatMenu = function( filter ){
 
+	var numPublicAttendees = 500;
 	var numArtAttendees = 123;
 	var numSportsAttendees = 5;
 	var numMusicAttendees = 0;
@@ -146,55 +171,107 @@ app.View.renderChatMenu = function( filter ){
 
 	var template = _.template($('#chatMenuTemplate').html());
 	$('#main_container').html( template({
+
+		numberOfPublicAttendees : numPublicAttendees,
 		numberOfArtAttendees : numArtAttendees,
 		numberOfSportsAttendees : numSportsAttendees,
 		numberOfMusicAttendees : numMusicAttendees,
 		numberOfTechnologyAttendees : numTechAttendees,
 		numberOfFoodAttendees : numFoodAttendees
 	}) );
+
+	// Set all buttons to disabled. We will add logic to enable each button if they have more than 1 person, or they have selected an interest
+	$('#artChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#sportsChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#musicChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#technologyChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#foodChat').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#artAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#sportsAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#musicAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#technologyAttendees').attr("disabled", "diabled").addClass("btn-disabled");
+	$('#foodAttendees').attr("disabled", "diabled").addClass("btn-disabled");
 	
 	//app.View.renderChatPage('default');
-	$('#defaultChat').on("click", function() {app.View.renderChatPage('default')});
-	$('#artChat').on("click", function() {app.View.renderChatPage('art')});
-	$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')});
-	$('#musicChat').on("click", function() {app.View.renderChatPage('music')});
-	$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')});
-	$('#foodChat').on("click", function() {app.View.renderChatPage('food')});
+	$('#defaultChat').on("click", function() {app.View.renderChatPage('default');});
+	$('#publicAttendees').on("click", function() {app.View.renderAttendeesPage("default");});
+
 	// TODO - ADD logic to fetch the number of attendees for each interests.
 
-	if (numArtAttendees <= 0) {
-		$('#artAttendees').attr("disabled", "disabled");
-		$('#artAttendees').addClass("btn-disabled");
+	console.log(app.Session.meta.interests.length);
+	for (var i = 0; i < app.Session.meta.interests.length; i++) {
+		console.log(app.Session.meta.interests[i]);
+
+		if (app.Session.meta.interests[i] === "art") {
+			$('#artChat').on("click", function() {app.View.renderChatPage('art')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "sports") {
+			$('#sportsChat').on("click", function() {app.View.renderChatPage('sports')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "music") {
+			$('#musicChat').on("click", function() {app.View.renderChatPage('music')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "technology") {
+			$('#technologyChat').on("click", function() {app.View.renderChatPage('technology')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+
+		if (app.Session.meta.interests[i] === "food") {
+			$('#foodChat').on("click", function() {app.View.renderChatPage('food')}).removeAttr("disabled", "diabled").removeClass("btn-disabled");
+		}
+	}
+
+
+
+	// If there are more than 0 people, then allow viewing user list
+	if (numArtAttendees > 0) {
+		$('#artAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("art");});
 	}
 	
-	if (numSportsAttendees <= 0) {
-		$('#sportsAttendees').attr("disabled", "disabled");
-		$('#sportsAttendees').addClass("btn-disabled");
+	if (numSportsAttendees > 0) {
+		$('#sportsAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("sports");})
 	}
 
-	if (numMusicAttendees <= 0) {
-		$('#musicAttendees').attr("disabled", "disabled");
-		$('#musicAttendees').addClass("btn-disabled");
+	if (numMusicAttendees > 0) {
+		$('#musicAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("music");})
 	}
 
-	if (numTechAttendees <= 0) {
-		$('#technologyAttendees').attr("disabled", "disabled");
-		$('#technologyAttendees').addClass("btn-disabled");
+	if (numTechAttendees > 0) {
+		$('#technologyAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("technology");})
 	}
 
-	if (numFoodAttendees <= 0) {
-		$('#foodAttendees').attr("disabled", "disabled");
-		$('#foodAttendees').addClass("btn-disabled");
+	if (numFoodAttendees > 0) {
+		$('#foodAttendees').removeAttr("disabled", "disabled").removeClass("btn-disabled").click(function() {app.View.renderAttendeesPage("food");})
 	}	
 }
 
 app.View.renderChatPage = function( filter ){
 
 	app.Session.filter = filter;
+
+	var tempFilter = "Public";
+
+	if (filter !== "default") {
+		tempFilter = filter.toTitleCase();
+	}
+
 	template = _.template($('#chatroom').html());
-	$('#main_container').html(template({location : app.Session.event.name}));
-	
+	$('#main_container').html(template({filter : tempFilter, location : app.Session.event.name}));
+	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+
+	
+	// Prevent form from sending when pressing enter. Send chat instead.
+	$(document).on("keypress", 'form', function (e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        e.preventDefault();
+        app.View.sendChat()
+        return false;
+    }
+});
 	
 	app.Logic.getChat(app.View.renderMessage);
 	console.log('rendering chat page');
