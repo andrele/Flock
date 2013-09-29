@@ -1,0 +1,37 @@
+/* line 3, ../sass/screen.sass */
+header {
+  width: 100%;
+  background: #2d7ddc;
+  margin-bottom: 50px;
+  text-align: center;
+}
+/* line 8, ../sass/screen.sass */
+header h1 {
+  line-height: 1;
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+}
+
+/* line 19, ../sass/screen.sass */
+.field-item {
+  margin-bottom: 20px;
+}
+/* line 21, ../sass/screen.sass */
+.field-item > div.col-xs-4 {
+  text-align: right;
+}
+/* line 24, ../sass/screen.sass */
+.field-item > div.col-xs-8 > textarea, .field-item > div.col-xs-8 > select {
+  width: 80%;
+}
+
+/* line 27, ../sass/screen.sass */
+.btn-container {
+  text-align: center;
+}
+
+/* line 30, ../sass/screen.sass */
+.content {
+  margin-bottom: 30px;
+}

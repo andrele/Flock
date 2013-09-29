@@ -15,7 +15,6 @@ function locationClicked(element) {
 	var time = "";
 	app.Logic.addUserToEvent(place, time);
 	app.View.renderChatPage('default');
-	
 	// add user to this event 
 }
 
@@ -44,7 +43,6 @@ app.View.initialize = function(){
 				interests : ['tech', 'art', 'food']
 			};
 			app.Logic.addUserToPeople(name, meta);
-			console.log(meta);
 			app.View.renderLocationPage();
 		} );
 };
@@ -105,6 +103,16 @@ app.Logic.getChat = function( callback ){
     	var chat = snapshot.val();
     	callback( chat );
     });
+}
+
+app.View.renderChat = function(location) {
+	template = _.template($('#chatroom').html());
+	$('#main_container').html(template({location : location.name}));
+}
+
+app.View.renderMessage = function(message) {
+	template = _.template($('#chatroom-message').html());
+	template({message : "hello", username : "abc", timestamp : "02:11:00"}).appendTo($('#msg-list'));
 }
 
 
@@ -181,5 +189,7 @@ app.View.getLocation = function() {
 }
 
 
+
+window.onload = app.View.initialize();
 
 });

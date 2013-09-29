@@ -1,7 +1,13 @@
-    <head>
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Welcome to Flock</title>
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="stylesheets/screen.css">
+	<!-- <link rel="stylesheet" media="screen" href="css/styles.css" > -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
     </head>
     <body>
         <div id="main_container">
@@ -11,24 +17,55 @@
         </div>
 
         <script type='text/template' id='loginPage'>
-            <div align="center">
-            <div id ="name" >
-            <label>Name</label>
-            <textarea id="name"></textarea></div>
+				<div align="center">
+					<form class="contact_form" action="#" method="post" name="contact_form">
+							<ul>
+									<li>
+											 <h2>Login Here</h2>
+										 </li>
 
-            <div id ="email" >
-            <label>Email</label>
-            <textarea id="email"></textarea></div>
-
-            <div id ="phone" >
-            <label>Phone</label>
-            <textarea id="phone"></textarea></div>
-
-            <div id ="interests" >
-            <label> Interests </label>
-            </div>
-
-            <input type='button' id='enterLoginInfo'>
+									<li>
+											<label for="name">Name:</label>
+											<input type="text"  placeholder="John Doe" required />
+									</li>
+									<li>
+											<label for="email">Email:</label>
+											<input type="email" name="email" placeholder="john_doe@example.com" required />
+											<span class="form_hint">Proper format "name@something.com"</span>
+									</li>
+									<li>
+											<label for="phone">Phone:</label>
+										<input type="tel" name="phone" placeholder="999-999-9999" />
+											<span class="form_hint">Proper format "9999999999"</span>
+									</li>
+									<li>
+											<label for="interests">Interests:</label>
+											<table >
+												<tr>
+													<td width="22"  ><input type="checkbox"  value="art" id="art_checkBox">
+														<td width="141"  ><label>Art</label></td>
+												</tr>
+												<tr>
+													<td><input type="checkbox"  value="technology" id="technology_checkBox"></td>
+														<td><label>Technology</label></td>
+												</tr>
+												<tr>
+													<td> <input type="checkbox" value="music" id="music_checkBox"></td>
+														<td><label>Music</label></td>
+												</tr>
+												<tr>
+													<td> <input type="checkbox" value="sports" id="sports_checkBox"></td>
+														<td><label>Sports</label></td>
+												</tr>
+											</table>
+		
+									</li>
+									<div align="center">
+									<li>
+										<button class="submit" type="button" id='enterLoginInfo'>Submit</button>
+									</li></div>
+							</ul>
+					</form>
 
         </div>
 
@@ -52,15 +89,53 @@
         <script type="text/template" id="locationPage">
       
         	<ul id="locations">
+<<<<<<< HEAD
         		<!-- Iterate on the locations -->  		
         		
+=======
+        		<!-- Iterate on the locations -->
+>>>>>>> 49793cc6603636db320b5391db991ff97034b653
         	</ul>
         </script>
 
         <script id='text/template' id='chatPage'>
         </script>
         
+        <!-- Template for chatroom -->
+        <script type="text/template" id="chatroom">
+        	<!-- Header / Navbar -->
+        	<header id="nav-bar">
+        		<a href="#">Groups</a>
+        		<h1>Public</h1>
+  					<h3><%- location %></h3>
+        		<a href="#">Friends</a>
+        	</header>
+        	
+        	<div id="messages">
+						<ul id="msg-list">
+							<!-- For each msg /// remove later -->
+							
+						</ul>
+					</div>
+					
+					<!-- Chatbox -->
+					<div id="chatbox">
+						<form id="chatbox-form">
+							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
+							<input type="submit" value="+" name="chatbox-submit" id="chatbox-submit" />
+						</form>
+					</div>
+					
+        </script>
         
+        <!-- Template for the individual messages in the chatroom -->
+        <script type="text/template" id="chatroom-message">
+        	<li>
+						<p class="msg-message">Message</p>
+						<span class="msg-username"><%- username %></span>
+						<span class="msg-timestamp"><%- timestamp %></span>
+					</li>
+        </script>
 
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="js/jquery-2.0.3.min.js"></script>
