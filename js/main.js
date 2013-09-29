@@ -5,12 +5,19 @@ var app = app || {
 };
 
 
-		function locationClicked(element) {
-			console.log("Name: " + element.innerHTML);
-			console.log("Id: " + element.getAttribute("data-id"));
-			
-			// add user to this event 
-		}
+function locationClicked(element) {
+	console.log("Name: " + element.innerHTML);
+	console.log("Id: " + element.getAttribute("data-id"));
+	var place = {
+		name : element.innerHTML,
+		id :  element.getAttribute("data-id")
+	};
+	var time = "";
+	app.Logic.addUserToEvent(place, time);
+	app.View.renderChatPage('default');
+	
+	// add user to this event 
+}
 
 
 $(function(){
@@ -46,16 +53,22 @@ app.View.initialize = function(){
 app.Logic.addUserToEvent = function (event, time){
 
 	app.Session.event = event;
-    var eventRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/");
+    var eventRef = new Firebase("https://hackny.firebaseio.com/events/" + event.id + "/");
 
-    for (var i=0;i<meta.interests.length;i++){
-       var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/" + meta.interests[i] + "/" + "people" + "/");
+    for (var i=0;i<app.Session.meta.interests.length;i++){
+       var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event.id + "/" + app.Session.meta.interests[i] + "/" + "people" + "/");
        attendeesRef.push({
         name: app.Session.name,
         time : time, 
         meta : app.Session.meta
        });
     }
+     var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event.id + "/" + "default" + "/" + "people" + "/");
+       attendeesRef.push({
+        name: app.Session.name,
+        time : time, 
+        meta : app.Session.meta
+    });
 }
 
 
@@ -67,22 +80,31 @@ app.Logic.getAttendees = function ( event, filter, callback ){
     var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/" + filter + "/" + "people" + "/");
     attendeesRef.on('child_added', function(snapshot) {
     	var attendee = snapshot.val();
+    	console.log(attendee);
     	callback( attendee );
     });
 }
 
-app.Logic.addChat = function(event, filter, time, text){
+app.Logic.addChat = function(text){
 
-    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + event + "/" + filter + "/" + "chat" + "/");
-   chatRef.push({
+	app.Session.filter = "";
+	time = new Date();
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
+	chatRef.push({
         name: app.Session.name,
         time : time, 
         text : text
        });
 }
 
-app.Logic.getChat = function(){
+app.Logic.getChat = function( callback ){
 
+    // get refs to all attendees
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
+    chatRef.on('child_added', function(snapshot) {
+    	var chat = snapshot.val();
+    	callback( chat );
+    });
 }
 
 
@@ -90,12 +112,31 @@ app.View.renderLocationPage = function(){
 			//console.log(meta);
 			app.View.drawLocation();
 			app.View.getLocation();
-
-
 };
 
+app.View.renderChatPage = function( filter ){
+
+	$('#main_container').html('');
+	console.log('rendering chat page');
+}
+
+app.View.renderAttendeesPage = function( filter ){
+
+	var template = _.template($('#attendeesListTemplate').html());
+	$('#main_container').html('');
+	$('#main_container').html( template() );
+	app.Logic.getAttendees(app.Session.event.id, filter, function( attendee ){
+
+		console.log(attendee);
+		var t = _.template($('#attendeeTemplate').html());
+		$('#attendeeList').append( t(attendee) );
+
+	});
+
+}
+
 app.View.drawLocation = function() {
-	template = _.template($('#enumerateLocations').html());
+	template = _.template($('#locationPage').html());
 	$('#main_container').html(template());
 	
 }
@@ -138,8 +179,6 @@ app.View.getLocation = function() {
 	getLocation();
 
 }
-
-
 
 
 

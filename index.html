@@ -33,16 +33,31 @@
         </div>
 
         </script>
+
+        <script type='text/template' id='attendeesListTemplate'>
+            <ul id='attendeeList'></ul>
+        </script>
+
+        <script type='text/template' id='attendeeTemplate'>
+
+        <div id='attendee'>
+            <p id='aname'> <%-name %> </p>
+            <p id='aphone'> <%-meta.phone %> </p>
+            <p id='aemail'> <%-meta.email %> </p>
+        </div>
+
+        </script>
         
         <!-- Template for enumerating locations -->
-        <script type="text/template" id="enumerateLocations">
+        <script type="text/template" id="locationPage">
       
         	<ul id="locations">
-        		<!-- Iterate on the locations -->
-        		
-        		
+        		<!-- Iterate on the locations -->  		
         		
         	</ul>
+        </script>
+
+        <script id='text/template' id='chatPage'>
         </script>
         
         
