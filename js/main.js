@@ -89,7 +89,7 @@ app.Logic.getAttendees = function ( event, filter, callback ){
 }
 
 app.Logic.addChat = function(text){
-
+	console.log("Add CHAT!");
 	app.Session.filter = "default";
 	time = new Date();
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
@@ -132,11 +132,20 @@ app.View.renderChatPage = function( filter ){
 
 	template = _.template($('#chatroom').html());
 	$('#main_container').html(template({location : app.Session.event.name}));
-
+	
+	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
 	app.Session.filter = filter;
 	
 	app.Logic.getChat(app.View.renderMessage);
 	console.log('rendering chat page');
+}
+
+app.View.sendChat = function() {
+	console.log("SEND CHAT!");
+	app.Logic.addChat($('#chatbox-input').val());
+	
+	$('#chatbox-input').val("");
+	
 }
 
 app.View.renderAttendeesPage = function( filter ){
