@@ -74,6 +74,7 @@ app.View.initialize = function(){
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
 		} );
+
 	$('#cover').delay(1500).fadeOut(1000);
 	app.Session.filter = "default";
 };
@@ -151,12 +152,9 @@ app.View.renderMessage = function(text) {
 
 
 app.View.renderLocationPage = function(){
-	
 
-			app.View.drawLocation();
-			app.View.getLocation();
-	  // var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
-   //    .setView([37.9, -77], 5);
+	app.View.drawLocation();
+	app.View.getLocation();
 };
 
 app.View.renderChatMenu = function( filter ){
@@ -170,6 +168,7 @@ app.View.renderChatMenu = function( filter ){
 
 	var template = _.template($('#chatMenuTemplate').html());
 	$('#main_container').html( template({
+
 		numberOfPublicAttendees : numPublicAttendees,
 		numberOfArtAttendees : numArtAttendees,
 		numberOfSportsAttendees : numSportsAttendees,
@@ -259,6 +258,7 @@ app.View.renderChatPage = function( filter ){
 	$('#main_container').html(template({filter : tempFilter, location : app.Session.event.name}));
 	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+
 	
 	// Prevent form from sending when pressing enter. Send chat instead.
 	$(document).on("keypress", 'form', function (e) {
@@ -336,6 +336,7 @@ app.View.getLocation = function() {
 		console.log(ul);
 		for (var i = 0;i<foursquareData.response.venues.length;i++) {
 			var listItem = document.createElement("li");
+			
 			listItem.setAttribute("data-id", foursquareData.response.venues[i].id );
 			listItem.setAttribute("onclick", "locationClicked(this)");
 			listItem.appendChild(document.createTextNode(foursquareData.response.venues[i].name));

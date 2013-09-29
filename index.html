@@ -71,7 +71,7 @@
 
 					          <div class="input-group field-item" id="phone2">
 					          	<span class="input-group-addon">
-							        <i class="icon-mobile-phone"></i>
+							        <i class="icon-mobile-phone icon-large"></i>
 							      </span>
 					            
 					            <input type="tel" class="form-control" id='phone' placeholder="PHONE">
@@ -111,36 +111,33 @@
         </script>
 
         <script type='text/template' id='attendeesListTemplate'>
+        <header class="no-padding-bottom">
+			<h1>
+				Attendees
+			</h1>
+	    </header>
             <ul id='attendeeList'></ul>
         </script>
 
         <script type='text/template' id='attendeeTemplate'>
-
+        
         <div id='attendee'>
-            <p id='aname'> <%-name %> </p>
-            <p id='aphone'> <%-meta.phone %> </p>
-            <p id='aemail'> <%-meta.email %> </p>
+            <p class='aname'> <%-name %> </p>
+            <p class='aphone'> <%-meta.phone %> </p>
+            <p class='aemail'> <%-meta.email %> </p>
         </div>
 
         </script>
 
-        <script type='text/template' id='attendeesListTemplate'>
-            <ul id='attendeeList'></ul>
-        </script>
 
-        <script type='text/template' id='attendeeTemplate'>
-
-        <div id='attendee'>
-            <p id='aname'> <%-name %> </p>
-            <p id='aphone'> <%-meta.phone %> </p>
-            <p id='aemail'> <%-meta.email %> </p>
-        </div>
-
-        </script>
         
         <!-- Template for enumerating locations -->
         <script type="text/template" id="locationPage">
-      
+      		<header class="no-padding-bottom">
+			      <h1>
+			        Login Page
+			      </h1>
+			    </header>
             <div id='map'></div>
         	<ul id="locations">
 
@@ -150,50 +147,74 @@
         <!-- Template for Chat Menu -->
         <script type="text/template" id="chatMenuTemplate">
 
-        <div class="col-xs-12 btn-container">
 
-        <table>
-        <tr>
-            <td><button class="btn btn-blue btn-wide submit" type="button" id='defaultChat'>Public Chat</button></td>
-            <td><button class="btn btn-blue btn-wide submit" class="btn btn-blue btn-wide submit" type="button" id='publicAttendees'><%-numberOfPublicAttendees %> Users</button></td>
-        </tr>
-               <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='artChat' >Art Chat</button> </td>
-        <td><button class="btn btn-blue btn-wide submit" class="btn btn-blue btn-wide submit" type="button" id='artAttendees'><%-numberOfArtAttendees %> Users</button></td>
-        </tr>
+        <header class="no-padding-bottom">
+			      <h1>
+			        Chat Menu
+			      </h1>
+			    </header>
 
-<tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='sportsChat'>Sports Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='sportsAttendees'><%-numberOfSportsAttendees%> Users</button>
-        </td>
-        </tr>
+		
+        <div>
+
+        
+
+
+        
+
+        <table class='chat-menu-table'>
+	        <tr>
+	        	<td>
+					<a type="button" id='defaultChat'>Default Chat</a> 
+				</td>
+				<td>
+			        <a type="button" id='defaultChatAttendees'><i class="icon-group"></i> 26</a>
+		        </td>
+			</tr>
+			<tr>
+				<td>
+			        <a type="button" id='artChat' >Art Chat</a> 
+		        </td>
+		        <td>
+			        <a type="button" id='artAttendees'><i class="icon-group"></i> <%-numberOfArtAttendees %></a>
+		        </td>
+	        </tr>
+
+			<tr>
+				<td>
+			        <a type="button" id='sportsChat'>Sports Chat</a>
+		        </td>
+		        <td>
+			        <a  type="button" id='sportsAttendees'><i class="icon-group"></i> <%-numberOfSportsAttendees%></a>
+		        </td>
+	        </tr>
     
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='musicChat'>Music Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='musicAttendees'><%-numberOfMusicAttendees%> Users</button>
-        </td>
-        </tr>
+		    <tr>
+				<td>
+					<a type="button" id='musicChat'>Music Chat</a>
+				</td>
+		        <td>
+			        <a type="button" id='musicAttendees'><i class="icon-group"></i> <%-numberOfMusicAttendees%> </a>
+		        </td>
+	        </tr>
     
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='technologyChat'>Technology Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='technologyAttendees'><%-numberOfTechnologyAttendees%> Users</button>
-        </td>
-        </tr>
+		    <tr>
+				<td>
+			        <a type="button" id='technologyChat'>Technology Chat</a>
+		        </td>
+		        <td>
+			        <a type="button" id='technologyAttendees'><i class="icon-group"></i> <%-numberOfTechnologyAttendees%></a>
+		        </td>
+	        </tr>
     
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='foodChat'>Food Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='foodAttendees'><%-numberOfFoodAttendees%> Users</button>
-        </td>
-        </tr>
+		    <tr>
+				<td>
+			        <a type="button" id='foodChat'>Food Chat</a>
+		        </td>
+		        <td>
+			        <a type="button" id='foodAttendees'><i class="icon-group"></i> <%-numberOfFoodAttendees%> </a>
+		        </td>
+	        </tr>
 
         </div>
         </script>
@@ -204,26 +225,45 @@
         <!-- Template for chatroom -->
         <script type="text/template" id="chatroom">
         	<!-- Header / Navbar -->
-        	<header id="nav-bar">
-        		<div id="back-chatmenu">Chat Menu</div>
+
+        
+        	<header class="no-bottom-margin" id="nav-bar">
+        		<div class="nav-icon left" id="back-chatmenu">&lt; Chat Menu</div>
         		<h1><%- filter %></h1>
-  					<h3><%- location %></h3>
+  					
         		<!--<a href="#">Friends</a>-->
+
+        	</header>
+
+        	<header class="subheader">
+	        	<h3><%- location %></h3>
         	</header>
         	
-        	<div id="messages">
-						<ul id="msg-list">
-							<!-- For each msg /// remove later -->
-							
-						</ul>
-					</div>
+        	<div class="container">
+	        	<div id="messages">
+					<ul id="msg-list">
+						<!-- For each msg /// remove later -->
+						
+					</ul>
+				</div>
+			</div>
+
 					
 					<!-- Chatbox -->
+					<div class="container">
 					<div id="chatbox">
 						<form id="chatbox-form">
-							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
-							<button type="button" name="chatbox-submit" id="chatbox-submit">+</button>
-						</form>
+						<div class="input-group">
+					      <input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
+					      <span class="input-group-btn">
+					        <button type="button" name="chatbox-submit" class="btn btn-default" id="chatbox-submit">+</button>
+					      </span>
+					    </div><!-- /input-group -->
+					   	</form>
+					</div>
+
+						
+					
 					</div>
 					
         </script>
@@ -234,6 +274,7 @@
 						<p class="msg-message"><%- message %></p>
 						<span class="msg-username"><%- username %></span>
 						<span class="msg-timestamp"><%- timestamp %></span>
+						<i class="icon-user icon-4x"></i>
 					</li>
         </script>
 
