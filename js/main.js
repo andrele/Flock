@@ -193,7 +193,7 @@ app.View.renderChatPage = function( filter ){
 	app.Session.filter = filter;
 	template = _.template($('#chatroom').html());
 	$('#main_container').html(template({location : app.Session.event.name}));
-	
+	$('#back-chatmenu').on("click", function() {app.View.renderChatMenu(app.Session.event.name)});
 	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
 	
 	app.Logic.getChat(app.View.renderMessage);
