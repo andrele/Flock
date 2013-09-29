@@ -1,0 +1,41 @@
+    <head>
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div id="main_container">
+        
+         
+        </div>
+
+        <script type='text/template' id='loginPage'>
+            <div align="center">
+            <div id ="name" >
+            <label>Name</label>
+            <textarea id="name"></textarea></div>
+
+            <div id ="email" >
+            <label>Email</label>
+            <textarea id="email"></textarea></div>
+
+            <div id ="phone" >
+            <label>Phone</label>
+            <textarea id="phone"></textarea></div>
+
+            <div id ="interests" >
+            <label> <%- name %>  </label>
+            </div>
+
+            <input type='button' id='enterLoginInfo'>
+
+        </div>
+
+        </script>
+
+        <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+        <script src="js/jquery-2.0.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/main.js"></script>
+</body>
+</html>
