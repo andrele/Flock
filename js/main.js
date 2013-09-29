@@ -4,6 +4,7 @@ var app = app || {
 	Session : {}
 };
 
+	app.Session.filter = "default";
 
 function locationClicked(element) {
 	console.log("Name: " + element.innerHTML);
@@ -29,6 +30,10 @@ app.Logic.addUserToPeople = function ( name, meta ){
 };
 
 app.View.initialize = function(){
+
+	$(document).ready(function(){
+		$('.chzn').chosen();
+	});
 
 	template = _.template( $('#loginPage').html() );
 	$('#main_container').html(template( {name: 'fasdfa', day:'fsdfsd'} ));
@@ -98,7 +103,7 @@ app.Logic.addChat = function(text){
 app.Logic.getChat = function( callback ){
 
     // get refs to all attendees
-    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
     chatRef.on('child_added', function(snapshot) {
     	var chat = snapshot.val();
 
