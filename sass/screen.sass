@@ -1,8 +1,12 @@
 $blue: #16a085
 
 @font-face 
-	font-family: Lato
+	font-family: LatoLig
 	src: url("fonts/Lato-Lig.otf") format("opentype")
+
+@font-face 
+	font-family: Lato
+	src: url("fonts/Lato-Reg.otf") format("opentype")
 
 
 
@@ -14,6 +18,38 @@ ul, li
 
 body
 	text-algin:center
+	background-color: rgb(245,245,245)
+
+textarea, input
+	outline : none
+	box-shadow: none
+	box-shadow: none !important
+
+#cover
+	height: 100%
+	width: 100%
+	background-color: $blue
+	position: fixed
+	top : 0px
+	left : 0px
+	z-index: 100
+	> img
+		width: 100%
+		height: auto
+
+.ui-focus 
+	-moz-box-shadow: none !important
+	-webkit-box-shadow: none !important
+	border: 5px solid black !important
+	box-shadow: none !important
+
+
+
+input:focus 
+	outline : none !important
+	outline-style : none
+	border: 2px solid rgb(50,50,60) !important
+	box-shadow: none !important
 
 #map
 	width: 100% 
@@ -48,9 +84,12 @@ header
 	text-align: center
 	h1
 		line-height: 1
+		font-family : LatoLig
 		margin: 0
-		padding: 5px 0
-		color: white
+		padding: 30px 0 30px 0
+		color: white			
+		height: 100%
+
 .input-group-addon
 	width: 40px
 
