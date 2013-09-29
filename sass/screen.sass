@@ -8,6 +8,10 @@ $blue: #16a085
 	font-family: Lato
 	src: url("fonts/Lato-Reg.otf") format("opentype")
 
+@font-face 
+	font-family: LatoBla
+	src: url("fonts/Lato-Bla.otf") format("opentype")
+
 
 
 h1,h2,h3,h4,h5,h6,p,a, label, textarea
@@ -18,7 +22,7 @@ ul, li
 
 body
 	text-algin:center
-	background-color: rgb(245,245,245)
+	background-color: rgb(240,240,245)
 
 textarea, input
 	outline : none
@@ -116,6 +120,7 @@ header
 .btn.btn-blue
 	background: $blue + #222222
 	color: #fff	
+	font-family : LatoBla
 	&:hover
 		background: $blue + #111111
 .content
@@ -133,3 +138,22 @@ header
 
 .chosen-container-multi .chosen-choices li.search-choice
 	margin-top: 6px
+
+#attendee
+	width: 100%
+	display : block
+
+.aname
+	font-size : 2em
+	font-family : LatoBla
+	display: block
+	float: left
+	padding: 0.2em 0 0.2em 0
+	width: 100%
+
+.aemail , .aphone
+	float: left
+	width: auto
+	font-size: 1em
+	margin 0 0.1em 0 0.1em
+	display:inline-block

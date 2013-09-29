@@ -151,12 +151,9 @@ app.View.renderMessage = function(text) {
 
 
 app.View.renderLocationPage = function(){
-	
 
-			app.View.drawLocation();
-			app.View.getLocation();
-	  // var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
-   //    .setView([37.9, -77], 5);
+	app.View.drawLocation();
+	app.View.getLocation();
 };
 
 app.View.renderChatMenu = function( filter ){

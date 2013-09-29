@@ -8,29 +8,34 @@
   src: url("fonts/Lato-Reg.otf") format("opentype");
 }
 
-/* line 13, ../sass/screen.sass */
+@font-face {
+  font-family: LatoBla;
+  src: url("fonts/Lato-Bla.otf") format("opentype");
+}
+
+/* line 17, ../sass/screen.sass */
 h1, h2, h3, h4, h5, h6, p, a, label, textarea {
   font-family: Lato, sans-serif;
 }
 
-/* line 16, ../sass/screen.sass */
+/* line 20, ../sass/screen.sass */
 ul, li {
   list-style-type: none !important;
 }
 
-/* line 19, ../sass/screen.sass */
+/* line 23, ../sass/screen.sass */
 body {
-  background-color: whitesmoke;
+  background-color: #f0f0f5;
 }
 
-/* line 23, ../sass/screen.sass */
+/* line 27, ../sass/screen.sass */
 textarea, input {
   outline: none;
   box-shadow: none;
   box-shadow: none !important;
 }
 
-/* line 28, ../sass/screen.sass */
+/* line 32, ../sass/screen.sass */
 #cover {
   height: 100%;
   width: 100%;
@@ -40,13 +45,13 @@ textarea, input {
   left: 0px;
   z-index: 100;
 }
-/* line 36, ../sass/screen.sass */
+/* line 40, ../sass/screen.sass */
 #cover > img {
   width: 100%;
   height: auto;
 }
 
-/* line 40, ../sass/screen.sass */
+/* line 44, ../sass/screen.sass */
 .ui-focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
@@ -54,7 +59,7 @@ textarea, input {
   box-shadow: none !important;
 }
 
-/* line 48, ../sass/screen.sass */
+/* line 52, ../sass/screen.sass */
 input:focus {
   outline: none !important;
   outline-style: none;
@@ -62,50 +67,50 @@ input:focus {
   box-shadow: none !important;
 }
 
-/* line 54, ../sass/screen.sass */
+/* line 58, ../sass/screen.sass */
 #map {
   width: 100%;
   height: 200px;
 }
 
-/* line 58, ../sass/screen.sass */
+/* line 62, ../sass/screen.sass */
 #locations {
   position: relative;
   padding-top: 0px;
   padding-left: 0px;
 }
-/* line 62, ../sass/screen.sass */
+/* line 66, ../sass/screen.sass */
 #locations > li {
   width: 100%;
   padding: 1em 0em 1em 3em;
   color: #282d32;
   cursor: pointer;
 }
-/* line 67, ../sass/screen.sass */
+/* line 71, ../sass/screen.sass */
 #locations > li:hover {
   background-color: #16a085;
   color: white;
 }
 
-/* line 72, ../sass/screen.sass */
+/* line 76, ../sass/screen.sass */
 body {
   font-family: Lato, sans-serif;
 }
 
-/* line 75, ../sass/screen.sass */
+/* line 79, ../sass/screen.sass */
 label {
   font-weight: 300;
   font-size: 20px;
 }
 
-/* line 80, ../sass/screen.sass */
+/* line 84, ../sass/screen.sass */
 header {
   width: 100%;
   background: #16a085;
   margin-bottom: 50px;
   text-align: center;
 }
-/* line 85, ../sass/screen.sass */
+/* line 89, ../sass/screen.sass */
 header h1 {
   line-height: 1;
   font-family: LatoLig;
@@ -115,70 +120,94 @@ header h1 {
   height: 100%;
 }
 
-/* line 93, ../sass/screen.sass */
+/* line 97, ../sass/screen.sass */
 .input-group-addon {
   width: 40px;
 }
 
-/* line 97, ../sass/screen.sass */
+/* line 101, ../sass/screen.sass */
 .input-group > input {
   width: 80%;
 }
 
-/* line 100, ../sass/screen.sass */
+/* line 104, ../sass/screen.sass */
 .field-item {
   margin-bottom: 20px;
   width: 100%;
 }
-/* line 103, ../sass/screen.sass */
+/* line 107, ../sass/screen.sass */
 .field-item > div.col-xs-4 {
   text-align: right;
 }
-/* line 106, ../sass/screen.sass */
+/* line 110, ../sass/screen.sass */
 .field-item > div.col-xs-8 > textarea, .field-item > div.col-xs-8 > select {
   width: 80%;
 }
 
-/* line 109, ../sass/screen.sass */
+/* line 113, ../sass/screen.sass */
 .btn-container {
   text-align: center;
 }
 
-/* line 112, ../sass/screen.sass */
+/* line 116, ../sass/screen.sass */
 .btn-wide {
   padding-left: 2em;
   padding-right: 2em;
 }
 
-/* line 116, ../sass/screen.sass */
+/* line 120, ../sass/screen.sass */
 .btn.btn-blue {
   background: #38c2a7;
   color: white;
+  font-family: LatoBla;
 }
-/* line 119, ../sass/screen.sass */
+/* line 124, ../sass/screen.sass */
 .btn.btn-blue:hover {
   background: #27b196;
 }
 
-/* line 121, ../sass/screen.sass */
+/* line 126, ../sass/screen.sass */
 .content {
   margin-bottom: 30px;
 }
 
-/* line 124, ../sass/screen.sass */
+/* line 129, ../sass/screen.sass */
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
   height: 34px;
   padding-left: 12px;
   color: #999999;
 }
 
-/* line 130, ../sass/screen.sass */
+/* line 135, ../sass/screen.sass */
 .chosen-container-multi .chosen-choices {
   height: 34px;
   border: 1px solid #cccccc;
 }
 
-/* line 134, ../sass/screen.sass */
+/* line 139, ../sass/screen.sass */
 .chosen-container-multi .chosen-choices li.search-choice {
   margin-top: 6px;
+}
+
+/* line 142, ../sass/screen.sass */
+#attendee {
+  width: 100%;
+  display: block;
+}
+
+/* line 146, ../sass/screen.sass */
+.aname {
+  font-size: 2em;
+  font-family: LatoBla;
+  display: block;
+  float: left;
+  padding: 0.2em 0 0.2em 0;
+  width: 100%;
+}
+
+/* line 154, ../sass/screen.sass */
+.aemail, .aphone {
+  float: left;
+  width: auto;
+  font-size: 1em;
 }
