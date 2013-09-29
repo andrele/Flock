@@ -114,32 +114,25 @@
         </script>
 
         <script type='text/template' id='attendeesListTemplate'>
+        <header class="no-padding-bottom">
+			<h1>
+				Attendees
+			</h1>
+	    </header>
             <ul id='attendeeList'></ul>
         </script>
 
         <script type='text/template' id='attendeeTemplate'>
-
+        
         <div id='attendee'>
-            <p id='aname'> <%-name %> </p>
-            <p id='aphone'> <%-meta.phone %> </p>
-            <p id='aemail'> <%-meta.email %> </p>
+            <p class='aname'> <%-name %> </p>
+            <p class='aphone'> <%-meta.phone %> </p>
+            <p class='aemail'> <%-meta.email %> </p>
         </div>
 
         </script>
 
-        <script type='text/template' id='attendeesListTemplate'>
-            <ul id='attendeeList'></ul>
-        </script>
 
-        <script type='text/template' id='attendeeTemplate'>
-
-        <div id='attendee'>
-            <p id='aname'> <%-name %> </p>
-            <p id='aphone'> <%-meta.phone %> </p>
-            <p id='aemail'> <%-meta.email %> </p>
-        </div>
-
-        </script>
         
         <!-- Template for enumerating locations -->
         <script type="text/template" id="locationPage">

@@ -152,12 +152,9 @@ app.View.renderMessage = function(text) {
 
 
 app.View.renderLocationPage = function(){
-	
 
-			app.View.drawLocation();
-			app.View.getLocation();
-	  // var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
-   //    .setView([37.9, -77], 5);
+	app.View.drawLocation();
+	app.View.getLocation();
 };
 
 app.View.renderChatMenu = function( filter ){
@@ -339,6 +336,7 @@ app.View.getLocation = function() {
 		console.log(ul);
 		for (var i = 0;i<foursquareData.response.venues.length;i++) {
 			var listItem = document.createElement("li");
+			
 			listItem.setAttribute("data-id", foursquareData.response.venues[i].id );
 			listItem.setAttribute("onclick", "locationClicked(this)");
 			listItem.appendChild(document.createTextNode(foursquareData.response.venues[i].name));

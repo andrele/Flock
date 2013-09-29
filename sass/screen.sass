@@ -8,6 +8,10 @@ $blue: #16a085
 	font-family: Lato
 	src: url("fonts/Lato-Reg.otf") format("opentype")
 
+@font-face 
+	font-family: LatoBla
+	src: url("fonts/Lato-Bla.otf") format("opentype")
+
 
 
 
@@ -19,6 +23,8 @@ ul, li
 	list-style-type: none !important
 
 body
+	text-algin:center
+	background-color: rgb(240,240,245)
 
 	text-align:center
 
@@ -36,8 +42,6 @@ body
 .right
 	float: right
 	right: 10px
-
-
 	text-align:center
 	background-color: rgb(245,245,245)
 
@@ -88,16 +92,13 @@ input:focus
 		padding: 1em 0em 1em 3em
 		color: rgb(40,45,50)
 		cursor: pointer
-		&:hover
-			background-color: $blue
-			color: white
+		border-bottom: 1px #777 solid
+		
 
 
 		&:nth-child(even)
 			background: #f3f3f3
-			&:hover
-				background-color: $blue
-				color: white
+		
 
 body
 	font-family: Lato, sans-serif
@@ -126,7 +127,7 @@ header.no-bottom-margin
 
 header.subheader
 	background: $blue - #555555
-	margin-bottom: 50px
+	margin-bottom: 1em
 	h3
 		margin: 0
 		font-size: 12px
@@ -176,13 +177,13 @@ ul
 		background: #f3f3f3
 		padding: 10px
 		border: 1px #f0f0f0 solid
-		margin-bottom: 25px
+		margin-bottom: 14px
 		border-radius: 5px
 		position: relative
 		i.icon-user
 			position: absolute
 			right: 10px
-			bottom: -20px
+			bottom: 6px
 			color: $blue - #555555
 
 
@@ -201,6 +202,7 @@ ul
 .btn.btn-blue
 	background: $blue + #222222
 	color: #fff	
+	font-family : LatoBla
 	&:hover
 		background: $blue + #111111
 .content
@@ -218,6 +220,31 @@ ul
 
 .chosen-container-multi .chosen-choices li.search-choice
 	margin-top: 6px
+
+#attendee
+	width: 100%
+	display : block
+	padding-left: 20px
+	border-bottom: 1px #777 solid
+
+#attendeeList
+	// padding-left: 20px
+
+.aname
+	font-size : 2em
+	font-family : LatoBla
+	display: block
+	float: left
+	padding: 0.2em 0 0.2em 0
+	width: 100%
+
+.aemail , .aphone
+	// float: left
+	width: auto
+	font-size: 1em
+	margin 0 0.1em 0 0.1em
+	display: block
+	clear: both
 
 #chatbox-input
 	width: 100%	
@@ -251,7 +278,7 @@ ul
 			width: 70%
 			text-align: left
 			padding-left: 20px
-			border-bottom: 2px #777 solid		
+			border-bottom: 1px #777 solid		
 			a
 				font-size: 20px	
 				color: #333
@@ -263,7 +290,7 @@ ul
 			width: 30%
 			text-align: left
 			padding-left: 20px
-			border-bottom: 2px #777 solid		
+			border-bottom: 1px #777 solid		
 
 table
 	width: 100%
