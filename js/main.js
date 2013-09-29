@@ -85,9 +85,9 @@ app.Logic.getAttendees = function ( event, filter, callback ){
 
 app.Logic.addChat = function(text){
 
-	app.Session.filter = "";
+	app.Session.filter = "default";
 	time = new Date();
-    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event + "/" + app.Session.filter + "/" + "chat" + "/");
+    var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
 	chatRef.push({
         name: app.Session.name,
         time : time, 
@@ -106,10 +106,12 @@ app.Logic.getChat = function( callback ){
     });
 }
 
+
 app.View.renderChat = function(location) {
 	template = _.template($('#chatroom').html());
 	$('#main_container').html(template({location : location.name}));
 }
+
 
 app.View.renderMessage = function(message) {
 	template = _.template($('#chatroom-message').html());
@@ -138,6 +140,7 @@ app.View.renderAttendeesPage = function( filter ){
 
 		console.log(attendee);
 		var t = _.template($('#attendeeTemplate').html());
+
 		$('#attendeeList').append( t(attendee) );
 
 	});
@@ -194,3 +197,9 @@ app.View.getLocation = function() {
 window.onload = app.View.initialize();
 
 });
+
+/*
+insert following to init:
+$('.chzn').chosen()
+
+*/
