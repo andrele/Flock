@@ -191,7 +191,7 @@ app.View.renderChatMenu = function( filter ){
 	
 	//app.View.renderChatPage('default');
 	$('#defaultChat').on("click", function() {app.View.renderChatPage('default');});
-	$('#publicAttendees').on("click", function() {app.View.renderAttendeesPage("default");});
+	$('#defaultChatAttendees').on("click", function() {app.View.renderAttendeesPage("default");});
 
 	// TODO - ADD logic to fetch the number of attendees for each interests.
 
