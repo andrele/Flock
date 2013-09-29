@@ -100,19 +100,67 @@
         </div>
 
         </script>
-        
-        <!-- Template for enumerating locations -->
-        <script type="text/template" id="enumerateLocations">
-      
-        	<ul id="locations">
-        		<!-- Iterate on the locations -->
-        		
-        		
-        		
-        	</ul>
+
+        <script type='text/template' id='attendeesListTemplate'>
+            <ul id='attendeeList'></ul>
+        </script>
+
+        <script type='text/template' id='attendeeTemplate'>
+
+        <div id='attendee'>
+            <p id='aname'> <%-name %> </p>
+            <p id='aphone'> <%-meta.phone %> </p>
+            <p id='aemail'> <%-meta.email %> </p>
+        </div>
+
         </script>
         
+        <!-- Template for enumerating locations -->
+        <script type="text/template" id="locationPage">
+      
+        	<ul id="locations">
+
+        	</ul>
+        </script>
+
+        <script id='text/template' id='chatPage'>
+        </script>
         
+        <!-- Template for chatroom -->
+        <script type="text/template" id="chatroom">
+        	<!-- Header / Navbar -->
+        	<header id="nav-bar">
+        		<a href="#">Groups</a>
+        		<h1>Public</h1>
+  					<h3><%- location %></h3>
+        		<a href="#">Friends</a>
+        	</header>
+        	
+        	<div id="messages">
+						<ul id="msg-list">
+							<!-- For each msg /// remove later -->
+							
+						</ul>
+					</div>
+					
+					<!-- Chatbox -->
+					<div id="chatbox">
+						<form id="chatbox-form">
+							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
+							<input type="submit" value="+" name="chatbox-submit" id="chatbox-submit" />
+						</form>
+					</div>
+					
+        </script>
+        
+        <!-- Template for the individual messages in the chatroom -->
+        <script type="text/template" id="chatroom-message">
+        	<li>
+						<p class="msg-message">Message</p>
+						<span class="msg-username"><%- username %></span>
+						<span class="msg-timestamp"><%- timestamp %></span>
+					</li>
+        </script>
 
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="js/jquery-2.0.3.min.js"></script>
