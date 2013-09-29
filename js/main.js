@@ -4,6 +4,12 @@ var app = app || {
 };
 
 
+		function locationClicked(element) {
+			console.log("Name: " + element.innerHTML);
+			console.log("Id: " + element.getAttribute("data-id"));
+			
+			// add user to this event 
+		}
 
 
 $(function(){
@@ -33,16 +39,18 @@ app.View.initialize = function(){
 				email : email, 
 				phone : phone
 			};
-			app.addUserToPeople(name, meta);
-			console.log(meta);
+			app.Logic.addUserToPeople(name, meta);
+			//console.log(meta);
+			app.View.drawLocation();
 			app.View.getLocation();
 	} );
 
 };
 
 app.View.drawLocation = function() {
-	template = _.template( $('#enumerateLocations').html());
+	template = _.template($('#enumerateLocations').html());
 	$('#main_container').html(template());
+	
 }
 
 app.View.getLocation = function() {
@@ -62,13 +70,13 @@ app.View.getLocation = function() {
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", "https://api.foursquare.com/v2/venues/search?ll=" + position.coords.latitude + "," + position.coords.longitude + "&oauth_token=2ZBTC4SWH5UO1UTOPCXOARGZ5RXLFM3NFRVE1UNFDMNGLGPN&v=20130928", false);
 			xhr.send();
-
 			foursquareData = JSON.parse(xhr.responseText);
 
 		//x.innerHTML= "Status: " + xhr.status + "<br/>" + "StatusText: " + xhr.responseText;
-
-			var ul = $('ul#locations');
-
+		
+			var ul = document.getElementById("locations");
+			console.log("Locations");
+			console.log(ul);
 			for (var i = 0;i<foursquareData.response.venues.length;i++) {
 				var listItem = document.createElement("li");
 				listItem.setAttribute("data-id", foursquareData.response.venues[i].id );
@@ -76,16 +84,15 @@ app.View.getLocation = function() {
 				listItem.appendChild(document.createTextNode(foursquareData.response.venues[i].name));
 				ul.appendChild(listItem); 
 			}
-
 			//x.appendChild(ul);
-
 		}
+		
+		getLocation();
 
-		function locationClicked(element) {
-			console.log("Name: " + element.innerHTML);
-			console.log("Id: " + element.getAttribute("data-id"));
-		}
 }
+
+
+
 
 
 });
