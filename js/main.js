@@ -159,12 +159,44 @@ app.View.renderLocationPage = function(){
 
 app.View.renderChatMenu = function( filter ){
 
-	var numPublicAttendees = 500;
-	var numArtAttendees = 123;
-	var numSportsAttendees = 5;
-	var numMusicAttendees = 0;
-	var numTechAttendees = 0;
-	var numFoodAttendees = 10;
+	var filters = [ 'default', 'art', 'sports', 'music', 'technology', 'food'];
+	var counts = [];
+	var count = 0;
+
+	for (var i=0;i<filters.length;i++){
+		var k = i;
+		console.log("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + filters[i] + "/" + "people" + "/");
+    	var attendeesRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + filters[i] + "/" + "people" + "/");
+    	attendeesRef.on('value', function(snapshot) {
+    	var t = snapshot.val();
+    	if (t) {
+    	counts[count] = Object.keys(t).length;
+    	console.log("k is " + k);
+    	console.log('adding to array' + counts[count]);
+    	count+=1;
+    	} else 
+    	{
+	    	console.log("k is " + k);
+
+    		counts[count]=0;
+    		count+=1;
+    	}
+    	if (count == 6) {
+    		app.View.FinishChatMenu(filter, counts);
+    	}
+    });
+	}
+}
+
+app.View.FinishChatMenu = function(filter, counts){
+
+
+	var numPublicAttendees = counts[0];
+	var numArtAttendees = counts[1];
+	var numSportsAttendees = counts[2];
+	var numMusicAttendees = counts[3];
+	var numTechAttendees = counts[4];
+	var numFoodAttendees = counts[5];
 
 	var template = _.template($('#chatMenuTemplate').html());
 	$('#main_container').html( template({
@@ -195,10 +227,9 @@ app.View.renderChatMenu = function( filter ){
 
 	// TODO - ADD logic to fetch the number of attendees for each interests.
 
-	console.log(app.Session.meta.interests.length);
 	for (var i = 0; i < app.Session.meta.interests.length; i++) {
 		console.log(app.Session.meta.interests[i]);
-
+ 
 		if (app.Session.meta.interests[i] === "art") {
 			$('#artChat').on("click", function() {app.View.renderChatPage('art')}).removeAttr("disabled", "disabled").removeClass("btn-disabled");
 		}
