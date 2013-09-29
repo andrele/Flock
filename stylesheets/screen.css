@@ -282,7 +282,7 @@ ul .list-item {
   border-bottom: 1px #777777 solid;
 }
 
-/* line 233, ../sass/screen.sass */
+/* line 232, ../sass/screen.sass */
 .aname {
   font-size: 2em;
   font-family: LatoBla;
@@ -292,7 +292,7 @@ ul .list-item {
   width: 100%;
 }
 
-/* line 241, ../sass/screen.sass */
+/* line 240, ../sass/screen.sass */
 .aemail, .aphone {
   width: auto;
   font-size: 1em;
@@ -300,7 +300,7 @@ ul .list-item {
   clear: both;
 }
 
-/* line 249, ../sass/screen.sass */
+/* line 250, ../sass/screen.sass */
 #chatbox-input {
   width: 100%;
   border: 1px solid #cccccc;
@@ -308,43 +308,43 @@ ul .list-item {
   color: #333333;
 }
 
-/* line 258, ../sass/screen.sass */
+/* line 259, ../sass/screen.sass */
 .chat-menu-header > div {
   text-align: center;
 }
-/* line 261, ../sass/screen.sass */
+/* line 262, ../sass/screen.sass */
 .chat-menu-header > div > h1 > span.big {
   font-size: 60px;
   display: block;
 }
 
-/* line 267, ../sass/screen.sass */
+/* line 268, ../sass/screen.sass */
 .chat-menu-table {
   height: 300px;
   overflow-y: scroll;
 }
-/* line 272, ../sass/screen.sass */
+/* line 273, ../sass/screen.sass */
 .chat-menu-table i {
   color: #38c2a7;
 }
-/* line 276, ../sass/screen.sass */
+/* line 277, ../sass/screen.sass */
 .chat-menu-table tr td {
   width: 70%;
   text-align: left;
   padding-left: 20px;
   border-bottom: 1px #777777 solid;
 }
-/* line 282, ../sass/screen.sass */
+/* line 283, ../sass/screen.sass */
 .chat-menu-table tr td a {
   font-size: 20px;
   color: #333333;
   line-height: 3em;
 }
-/* line 286, ../sass/screen.sass */
+/* line 287, ../sass/screen.sass */
 .chat-menu-table tr td a:hover {
   text-decoration: none;
 }
-/* line 288, ../sass/screen.sass */
+/* line 289, ../sass/screen.sass */
 .chat-menu-table tr td:nth-child(even) {
   width: 30%;
   text-align: left;
@@ -352,12 +352,12 @@ ul .list-item {
   border-bottom: 1px #777777 solid;
 }
 
-/* line 295, ../sass/screen.sass */
+/* line 296, ../sass/screen.sass */
 table {
   width: 100%;
 }
 
-/* line 298, ../sass/screen.sass */
+/* line 299, ../sass/screen.sass */
 .chat-menu-table tr td a.btn-disabled {
   color: #cccccc;
 }
