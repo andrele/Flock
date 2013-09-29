@@ -50,6 +50,8 @@ app.View.initialize = function(){
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
 		} );
+	
+	app.Session.filter = "default";
 };
 
 // opens default chat session
@@ -88,9 +90,13 @@ app.Logic.getAttendees = function ( event, filter, callback ){
     });
 }
 
+app.Logic.setFilter = function(filter) {
+	app.Session.filter = filter;
+}
+
 app.Logic.addChat = function(text){
-	console.log("Add CHAT!");
-	app.Session.filter = "default";
+	// console.log("Add CHAT!");
+	// app.Session.filter = "default"; // change depending on what chatroom you are in
 	time = new Date();
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
 	chatRef.push({
@@ -103,6 +109,7 @@ app.Logic.addChat = function(text){
 app.Logic.getChat = function( callback ){
 
     // get refs to all attendees
+    // change session.filter depending on what chatroom you are in
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
     var chatRefLimited = chatRef.limit(5);
 
@@ -141,7 +148,7 @@ app.View.renderChatPage = function( filter ){
 }
 
 app.View.sendChat = function() {
-	console.log("SEND CHAT!");
+	//console.log("SEND CHAT!");
 	app.Logic.addChat($('#chatbox-input').val());
 	
 	$('#chatbox-input').val("");
