@@ -15,9 +15,7 @@ function locationClicked(element) {
 	};
 	var time = "";
 	app.Logic.addUserToEvent(place, time);
-	app.View.renderChatMenu(place);
-
-	//app.View.renderChatPage('default');
+	app.View.renderChatPage('default');
 	// add user to this event 
 }
 
@@ -51,7 +49,7 @@ app.View.initialize = function(){
 			};
 			app.Logic.addUserToPeople(name, meta);
 			app.View.renderLocationPage();
-		} )
+		} );
 	
 	app.Session.filter = "default";
 };
@@ -97,8 +95,8 @@ app.Logic.setFilter = function(filter) {
 }
 
 app.Logic.addChat = function(text){
-
-	//app.Session.filter = "default";
+	// console.log("Add CHAT!");
+	// app.Session.filter = "default"; // change depending on what chatroom you are in
 	time = new Date();
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
 	chatRef.push({
@@ -111,81 +109,50 @@ app.Logic.addChat = function(text){
 app.Logic.getChat = function( callback ){
 
     // get refs to all attendees
+    // change session.filter depending on what chatroom you are in
     var chatRef = new Firebase("https://hackny.firebaseio.com/events/" + app.Session.event.id + "/" + app.Session.filter + "/" + "chat" + "/");
-    chatRef.on('child_added', function(snapshot) {
+    var chatRefLimited = chatRef.limit(5);
+
+    chatRefLimited.on('child_added', function(snapshot) {
     	var chat = snapshot.val();
 
     	callback( chat );
     });
 }
 
-
-app.View.renderChat = function(location) {
-	template = _.template($('#chatroom').html());
-	$('#main_container').html(template({location : location.name}));
-}
-
-
-app.View.renderMessage = function(message) {
+app.View.renderMessage = function(text) {
 	template = _.template($('#chatroom-message').html());
-	$('#msg-list').append(template({message : "hello", username : "abc", timestamp : "02:11:00"}));
+	$('#msg-list').append(template({message : text.text, username : text.name, timestamp : "2:00"}));
 }
 
 
 app.View.renderLocationPage = function(){
-			//console.log(meta);
+	
+
 			app.View.drawLocation();
 			app.View.getLocation();
+	  // var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
+   //    .setView([37.9, -77], 5);
 };
 
 app.View.renderChatPage = function( filter ){
 
-	$('#main_container').html('');
+	template = _.template($('#chatroom').html());
+	$('#main_container').html(template({location : app.Session.event.name}));
+	
+	$('#chatbox-submit').on("click", function() {app.View.sendChat()});
+	app.Session.filter = filter;
+	
+	app.Logic.getChat(app.View.renderMessage);
 	console.log('rendering chat page');
 }
 
-app.View.renderChatMenu = function( filter ){
-
-	var numArtAttendees = 123;
-	var numSportsAttendees = 5;
-	var numMusicAttendees = 0;
-	var numTechAttendees = 0;
-	var numFoodAttendees = 10;
-
-	var template = _.template($('#chatMenuTemplate').html());
-	$('#main_container').html( template({
-		numberOfArtAttendees : numArtAttendees,
-		numberOfSportsAttendees : numSportsAttendees,
-		numberOfMusicAttendees : numMusicAttendees,
-		numberOfTechnologyAttendees : numTechAttendees,
-		numberOfFoodAttendees : numFoodAttendees
-	}) );
-	// TODO - ADD logic to fetch the number of attendees for each interests.
-
-	if (numArtAttendees <= 0) {
-		$('#artAttendees').attr("disabled", "disabled");
-		$('#artAttendees').addClass("btn-disabled");
-	}
+app.View.sendChat = function() {
+	//console.log("SEND CHAT!");
+	app.Logic.addChat($('#chatbox-input').val());
 	
-	if (numSportsAttendees <= 0) {
-		$('#sportsAttendees').attr("disabled", "disabled");
-		$('#sportsAttendees').addClass("btn-disabled");
-	}
-
-	if (numMusicAttendees <= 0) {
-		$('#musicAttendees').attr("disabled", "disabled");
-		$('#musicAttendees').addClass("btn-disabled");
-	}
-
-	if (numTechAttendees <= 0) {
-		$('#technologyAttendees').attr("disabled", "disabled");
-		$('#technologyAttendees').addClass("btn-disabled");
-	}
-
-	if (numFoodAttendees <= 0) {
-		$('#foodAttendees').attr("disabled", "disabled");
-		$('#foodAttendees').addClass("btn-disabled");
-	}	
+	$('#chatbox-input').val("");
+	
 }
 
 app.View.renderAttendeesPage = function( filter ){
@@ -207,6 +174,9 @@ app.View.renderAttendeesPage = function( filter ){
 app.View.drawLocation = function() {
 	template = _.template($('#locationPage').html());
 	$('#main_container').html(template());
+
+	console.log('HERE ');
+	console.log( $('#main_container') );
 	
 }
 
@@ -217,7 +187,6 @@ app.View.getLocation = function() {
 
 	function getLocation()
 	{
-		console.log('test');
 	if (navigator.geolocation)
 		{
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -226,6 +195,8 @@ app.View.getLocation = function() {
 	}
 	function showPosition(position)
 	{
+		  var map = L.mapbox.map('map', 'mayakreidieh.map-kb1dxm8i')
+      .setView([position.coords.latitude, position.coords.longitude], 15);
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "https://api.foursquare.com/v2/venues/search?ll=" + position.coords.latitude + "," + position.coords.longitude + "&oauth_token=2ZBTC4SWH5UO1UTOPCXOARGZ5RXLFM3NFRVE1UNFDMNGLGPN&v=20130928", false);
 		xhr.send();

@@ -8,6 +8,13 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="libs/chosen/chosen.css">
 
+  <Link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' />
+  <![endif]-->
+  <Script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></Script>
+
+
 	<link rel="stylesheet" href="stylesheets/screen.css">
 	<!-- <link rel="stylesheet" media="screen" href="css/styles.css" > -->
     <meta name="description" content="">
@@ -24,7 +31,7 @@
 
         		<header>
 			      <h1>
-			        Login Here
+			        Login Page
 			      </h1>
 			    </header>
 
@@ -46,7 +53,7 @@
 						        <i class="icon-info icon-large"></i>
 						      </span>
 			
-					            <input type="text" class="form-control" id="name" placeholder="Name">
+					            <input type="text" class="form-control" id="name" placeholder="NAME">
 					      
 					          </div>
 					          <div class="input-group field-item" id="email2">
@@ -54,7 +61,7 @@
 							        <i class="icon-envelope"></i>
 							      </span>
 					            
-					            <input type="email" class="form-control" id='email' placeholder="Email">
+					            <input type="email" class="form-control" id='email' placeholder="EMAIL">
 
 					          </div>
 
@@ -63,7 +70,7 @@
 							        <i class="icon-mobile-phone"></i>
 							      </span>
 					            
-					            <input type="tel" class="form-control" id='phone' placeholder="phone">
+					            <input type="tel" class="form-control" id='phone' placeholder="PHONE">
 					          </div>
 
 					          <div class="input-group field-item" id="phone2">
@@ -102,55 +109,6 @@
 
         </script>
 
-        <script type="text/template" id="chatMenuTemplate">
-
-        <div class="col-xs-12 btn-container">
-
-        <table>
-        <tr>
-
-               <button class="btn btn-blue btn-wide submit" type="button" id='defaultChat'>Default Chat</button> </tr>
-               <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='artChat' >Art Chat</button> </td>
-        <td><button class="btn btn-blue btn-wide submit" class="btn btn-blue btn-wide submit" type="button" id='artAttendees'><%-numberOfArtAttendees %> Users</button></td>
-        </tr>
-
-<tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='sportsChat'>Sports Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='sportsAttendees'><%-numberOfSportsAttendees%> Users</button>
-        </td>
-        </tr>
-    
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='musicChat'>Music Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='musicAttendees'><%-numberOfMusicAttendees%> Users</button>
-        </td>
-        </tr>
-    
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='technologyChat'>Technology Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='technologyAttendees'><%-numberOfTechnologyAttendees%> Users</button>
-        </td>
-        </tr>
-    
-    <tr>
-               <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='foodChat'>Food Chat</button></td>
-        <td>
-        <button class="btn btn-blue btn-wide submit" type="button" id='foodAttendees'><%-numberOfFoodAttendees%> Users</button>
-        </td>
-        </tr>
-
-        </div>
-        </script>
-
         <script type='text/template' id='attendeesListTemplate'>
             <ul id='attendeeList'></ul>
         </script>
@@ -182,6 +140,7 @@
         <!-- Template for enumerating locations -->
         <script type="text/template" id="locationPage">
       
+            <div id='map'></div>
         	<ul id="locations">
 
         	</ul>
@@ -211,7 +170,7 @@
 					<div id="chatbox">
 						<form id="chatbox-form">
 							<input type="text" placeholder="Type a message" name="chatbox-input" id="chatbox-input" />
-							<input type="submit" value="+" name="chatbox-submit" id="chatbox-submit" />
+							<button type="button" name="chatbox-submit" id="chatbox-submit">+</button>
 						</form>
 					</div>
 					
@@ -220,7 +179,7 @@
         <!-- Template for the individual messages in the chatroom -->
         <script type="text/template" id="chatroom-message">
         	<li>
-						<p class="msg-message">Message</p>
+						<p class="msg-message"><%- message %></p>
 						<span class="msg-username"><%- username %></span>
 						<span class="msg-timestamp"><%- timestamp %></span>
 					</li>
