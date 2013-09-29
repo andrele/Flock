@@ -105,10 +105,12 @@ app.Logic.getChat = function( callback ){
     });
 }
 
+
 app.View.renderChat = function(location) {
 	template = _.template($('#chatroom').html());
 	$('#main_container').html(template({location : location.name}));
 }
+
 
 app.View.renderMessage = function(message) {
 	template = _.template($('#chatroom-message').html());
